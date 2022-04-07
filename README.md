@@ -6,7 +6,7 @@
 
 # <p align="center" style="color: #14635c;" > [التنصيب بكود واحد](https://t.me/Rmmmc/4121) 
 ```sh 
-git clone https://github.com/FAWAZZ77/Rhps.git ;cd Rhps;chmod +x Run;./Run 
+git clone https://github.com/fawazz77/Rhps ;cd Rhps;bash Run
 ``` 
 ``` 
 » فقط أضغط على الكود ☝️ وقم بنسخه 
