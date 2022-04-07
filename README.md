@@ -1,4 +1,4 @@
-# <p align="center" style="color:#cb3349" > [<< سورس شهد >> (Final Version)](https://telegram.me/RMMMC) 
+# <p align="center" style="color:#cb3349" > [سورس شهد](https://telegram.me/RMMMC) 
 
 <p align="center" style="color: #14635c;" > سورس شهد الاقوى والاحدث لحمايه المجموعات في التلكرام 
 
