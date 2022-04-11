@@ -725,12 +725,12 @@ else
 UserInfousername = '['..UserInfo.first_name..'](tg://user?id='..UserId..')'
 end
 return {
-Lock     = '\n⇜ من「 '..UserInfousername..' 」\n'..TextMsg..'\n༄ ',
-unLock  = '\n⇜ من「 '..UserInfousername..' 」\n'..TextMsg..'\n༄ ',
-lockKtm  = '\n⇜ من「 '..UserInfousername..' 」\n'..TextMsg..'\n༄ ',
-lockKid  = '\n⇜ من「 '..UserInfousername..' 」\n'..TextMsg..'\n༄ ',
-lockKick = '\n⇜ من「 '..UserInfousername..' 」\n'..TextMsg..'\n༄ ',
-Reply    = '\n「 '..UserInfousername..' 」\n'..TextMsg..'\n༄ '
+Lock     = '\n⇜ بواسطة ↤ '..UserInfousername..'\n'..TextMsg..'\n✓ ',
+unLock  = '\n⇜ بواسطة ↤ '..UserInfousername..'\n'..TextMsg..'\n✓ ',
+lockKtm  = '\n⇜ بوسطة ↤ '..UserInfousername..'\n'..TextMsg..'\n✓ ',
+lockKid  = '\n⇜ بواسطة ↤ '..UserInfousername..' \n'..TextMsg..'\n✓ ',
+lockKick = '\n⇜ بواسطة ↤ '..UserInfousername..'\n'..TextMsg..'\n✓ ',
+Reply    = '\n⇜ الحلو ↤ '..UserInfousername..'\n'..TextMsg..'\n✓ '
 }
 end
 function StatusCanOrNotCan(ChatId,UserId)
@@ -994,7 +994,7 @@ Welcome = Welcome:gsub('{القوانين}',Redis:get(TheRhp.."Rhp:Group:Rules".
 Welcome = Welcome:gsub('{الرتبه}',RinkBot)
 Welcome = Welcome:gsub('{التاريخ}',os.date('%d/%m/%Y'))
 Welcome = Welcome:gsub('{الوقت}',os.date('%I:%M:%S'))
-Welcome = Welcome:gsub('{المعرف}',UserInfousername) 
+Welcome = Welcome:gsub('{اليوزر}',UserInfousername) 
 Welcome = Welcome:gsub('{المجموعه}',Get_Chat.title) 
 return LuaTele.sendText(msg_chat_id,msg_id,Welcome,"md")  
 else
@@ -1577,25 +1577,24 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = '- تغيير الرد', data = msg.sender.user_id..'/chengreplyg'},
-},
-{
-{text = '- الغاء الامر', data = msg.sender.user_id..'/delamrredis'},
+{text = 'الغاء الامر', data = msg.sender.user_id..'/delamrredis'},
 },
 }
 }
 LuaTele.sendText(msg_chat_id,msg_id,[[
-↯︙ارسل لي الرد سواء كان 
-❨ ملف • ملصق • متحركه • صوره
- • فيديو • بصمه الفيديو • بصمه • صوت • رساله ❩
-↯︙يمكنك اضافة الى النص •
-— — — — — — — — —
- `{اليوزر}` ↬ معرف المستخدم
- `{الرسائل}` ↬ عدد الرسائل
- `{الاسم}` ↬ اسم المستخدم
- `{الايدي}` ↬ ايدي المستخدم
- `{الرتبه}` ↬ رتبة المستخدم
- `{التعديل}` ↬ عدد التعديل
+⇜ حلو , ارسل الحين الرد
+( نص,صوره,فيديو,متحركه,بصمه,اغنيه,ملف )
+ويمديك اضافة الدوال ومنها :
+━━━━━━━━━━━━
+`{اليوزر}` ↤ يوزر المستخدم
+`{الرسائل}` ↤ رسائل المستخدم
+`{الاسم}` ↤ اسم المستخدم
+`{الايدي}` ↤ ايدي المستخدم
+`{الرتبه}` ↤ رتبه المستخدم
+`{التعديل}` ↤ تعديلات المستخدم
+`{المجوهرات}` ↤ مجوهرات المستخدم
+`{البايو}` ↤ بايو المستخدم
+`{التاريخ}` ↤ تاريخ اليوم
 
 ]],"md",true, false, false, false, reply_markup)
 return false
@@ -1638,6 +1637,7 @@ local Text = Text:gsub('{اليوزر}',(UserInfo.username or 'لا يوجد'))
 local Text = Text:gsub('{الاسم}',UserInfo.first_name)
 local Text = Text:gsub('{الايدي}',msg.sender.user_id)
 local Text = Text:gsub('{التعديل}',NumMessageEdit)
+local Text = Text:gsub('{التاريخ}',os.date('%d/%m/%Y'))
 local Text = Text:gsub('{الرسائل}',NumMsg)
 local Text = Text:gsub('{الرتبه}',Status_Gps)
 LuaTele.sendText(msg_chat_id,msg_id,'['..Text..']',"md",false, false, false, false, reply_markup)  
@@ -1686,6 +1686,7 @@ local NumMessageEdit = Redis:get(TheRhp..'Rhp:Num:Message:Edit'..msg_chat_id..ms
 local Texingt = Texingt:gsub('{اليوزر}',(UserInfo.username or 'لا يوجد')) 
 local Texingt = Texingt:gsub('{الاسم}',UserInfo.first_name)
 local Texingt = Texingt:gsub('{الايدي}',msg.sender.user_id)
+local Texingt = Texingt:gsub('{التاريخ}',os.date('%d/%m/%Y'))
 local Texingt = Texingt:gsub('{التعديل}',NumMessageEdit)
 local Texingt = Texingt:gsub('{الرسائل}',NumMsg)
 local Texingt = Texingt:gsub('{الرتبه}',Status_Gps)
@@ -1771,26 +1772,24 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = '- تغيير الرد', data = msg.sender.user_id..'/chengreplys'},
-},
-{
 {text = '- الغاء الامر', data = msg.sender.user_id..'/delamrredis'},
 },
 }
 }
 LuaTele.sendText(msg_chat_id,msg_id,[[
-↯︙ارسل لي الرد سواء كان 
-❨ ملف • ملصق • متحركه • صوره
- • فيديو • بصمه الفيديو • بصمه • صوت • رساله ❩
-↯︙يمكنك اضافة الى النص •
-— — — — — — — — —
- `{اليوزر}` ↬ معرف المستخدم
- `{الرسائل}` ↬ عدد الرسائل
- `{الاسم}` ↬ اسم المستخدم
- `{الايدي}` ↬ ايدي المستخدم
- `{الرتبه}` ↬ رتبة المستخدم
- `{التعديل}` ↬ عدد التعديل
-
+⇜ حلو , ارسل الحين الرد
+( نص,صوره,فيديو,متحركه,بصمه,اغنيه,ملف )
+ويمديك اضافة الدوال ومنها :
+━━━━━━━━━━━━
+`{اليوزر}` ↤ يوزر المستخدم
+`{الرسائل}` ↤ رسائل المستخدم
+`{الاسم}` ↤ اسم المستخدم
+`{الايدي}` ↤ ايدي المستخدم
+`{الرتبه}` ↤ رتبه المستخدم
+`{التعديل}` ↤ تعديلات المستخدم
+`{المجوهرات}` ↤ مجوهرات المستخدم
+`{البايو}` ↤ بايو المستخدم
+`{التاريخ}` ↤ تاريخ اليوم
 ]],"md",true, false, false, false, reply_markup)
 return false
 end
@@ -2092,6 +2091,14 @@ return LuaTele.sendText(msg_chat_id,msg_id,"\n*⇜ كفو اجابتك صح *","
 
 end
 end 
+if Redis:get(TheRhp.."Rhp:Game:Amt"..msg.chat_id) then
+if text == Redis:get(TheRhp.."Rhp:Game:Amt"..msg.chat_id) then
+Redis:del(TheRhp.."Rhp:Game:Amt"..msg.chat_id)
+Redis:incrby(TheRhp.."Rhp:Num:Add:Games"..msg.chat_id..msg.sender.user_id, 1)  
+return LuaTele.sendText(msg_chat_id,msg_id,"\n*⇜ كفو اجابتك صح *","md",true)  
+
+end
+end 
 if Redis:get(TheRhp.."Rhp:Game:Aii"..msg.chat_id) then
 if text == Redis:get(TheRhp.."Rhp:Game:Aii"..msg.chat_id) then
 Redis:del(TheRhp.."Rhp:Game:Aii"..msg.chat_id)
@@ -2154,6 +2161,31 @@ Redis:incrby(TheRhp.."Rhp:Num:Add:Games"..msg.chat_id..msg.sender.user_id, 1)
 Redis:del(TheRhp.."Rhp:Game:Arg"..msg.chat_id)
 return LuaTele.sendText(msg_chat_id,msg_id,"\n*⇜ كفو اجابتك صح *","md",true)  
 
+end
+end
+
+if Redis:get(TheRhp.."Rhp:Game:Hgj"..msg.chat_id..msg.sender.user_id) then  
+if text and text:match("^(%d+)$") then
+local NUM = text:match("^(%d+)$")
+if tonumber(NUM) > 6 then
+return LuaTele.sendText(msg_chat_id,msg_id,"*⇜ عذرا مافيه الى ( 6 ) اختيارات بس ارسل اختيارك مره ثانية*\n","md",true)  
+end 
+local GETNUM = Redis:get(TheRhp.."Rhp:Game:Hgj"..msg.chat_id..msg.sender.user_id)
+if tonumber(NUM) == tonumber(GETNUM) then
+Redis:del(TheRhp.."Rhp:SADD:NUM"..msg.chat_id..msg.sender.user_id)
+Redis:del(TheRhp.."Rhp:Game:Hgj"..msg.chat_id..msg.sender.user_id)
+Redis:incrby(TheRhp.."Rhp:Num:Add:Games"..msg.chat_id..msg.sender.user_id,3)  
+return LuaTele.sendText(msg_chat_id,msg_id,"*⇜ مبروك فزت وطلعت المحيبس\n⇜ لقد حصلت على ( 3 ) من مجوهرات يمكنك استبدالهن برسائل *","md",true)  
+elseif tonumber(NUM) ~= tonumber(GETNUM) then
+Redis:incrby(TheRhp.."Rhp:SADD:NUM"..msg.chat_id..msg.sender.user_id,1)
+if tonumber(Redis:get(TheRhp.."Rhp:SADD:NUM"..msg.chat_id..msg.sender.user_id)) >= 3 then
+Redis:del(TheRhp.."Rhp:SADD:NUM"..msg.chat_id..msg.sender.user_id)
+Redis:del(TheRhp.."Rhp:Game:Hgj"..msg.chat_id..msg.sender.user_id)
+return LuaTele.sendText(msg_chat_id,msg_id,"\n*⇜ للاسف خسرت \n⇜ المحيبس في اليد ( "..GETNUM.." )\n حاول مره ثانيه عشان تحصل المحيبس *","md",true)  
+else
+return LuaTele.sendText(msg_chat_id,msg_id,"⇜ يالهطف! اختيار غلططط ركزز","md",true)  
+end
+end
 end
 end
 if Redis:get(TheRhp.."Rhp:Game:Estimate"..msg.chat_id..msg.sender.user_id) then  
@@ -2424,7 +2456,7 @@ SudoId = ]]..UserId_Info.id..[[
 }
 ]])
 Informationlua:close()
-return LuaTele.sendText(msg_chat_id,msg_id,"\n ⇜  تم تغيير المطور الاساسي اصبح على : [@"..text:gsub('@','').."]","md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,"\n⇜  تم تغيير المطور الاساسي اصبح على : [@"..text:gsub('@','').."]","md",true)  
 end
 end
 if text == 'تغيير المطور الاساسي' or text == 'تغيير المطور الاساسي ⌔' then
@@ -2835,7 +2867,7 @@ local TotalEdit = Redis:get(TheRhp..'Rhp:Num:Message:Edit'..msg_chat_id..msg.sen
 local TotalMsgT = Total_message(TotalMsg) 
 local NumberGames = Redis:get(TheRhp.."Rhp:Num:Add:Games"..msg.chat_id..msg.sender.user_id) or 0
 local NumAdd = Redis:get(TheRhp.."Rhp:Num:Add:Memp"..msg.chat_id..":"..msg.sender.user_id) or 0
-local Texting = {'جبر لقلوبنا 🤍.'," طلتك تشبه الورد في جماله 🤍.","سَهيت بنظرة عيِونك واثاري هالعيون بلادَ.🤍","أطلق ايدي","جبر لقلوبنا",}
+local Texting = {"📸 ↧ دز","بس بس يكفي حلاوه","📸 ↧ اذا مو احلى ايدي","📸 ↧ جبر ياخي","📸 ↧ الله!","📸 ↧ عمري الحلوين","📸 ↧ ايدي قلبي",}
 local Description = Texting[math.random(#Texting)]
 if UserInfo.username then
 UserInfousername = '@'..UserInfo.username..''
@@ -2864,23 +2896,25 @@ end
 else
 if photo.total_count > 0 then
 return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,
-'\n*- '..Description..
-'\n• 𝐈𝐃 : '..UserId..
-'\n• 𝐔𝐒𝐄 : '..UserInfousername..
-'\n• 𝐒𝐓𝐀 : '..RinkBot..
-'\n• 𝐌𝐒𝐆 : '..TotalMsg..
-'\n• 𝐁𝐈𝐎 : '..getbio(UserId)..
+'\n'..Description..
+'\n🎫 ↧مـعرفك ↞ '..UserInfousername..
+'\n🎟 ↧ايديــك ↞ '..UserId..
+'\n🔫 ↧رتبتـــك ↞ '..RinkBot..
+'\n🧨 ↧تفاعـلك ↞ '..TotalMsgT..
+'\n💬 ↧رسائلك ↞ '..TotalMsg..
+'\n💡 ↧تكليجاتك ↞ '..TotalEdit..
+'\n💎 ↧مجوهراتك ↞ '..NumberGames..
+'\n*'..getbio(UserId)..
 '*', "md")
 else
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n*• ايديك : '..UserId..
-'\n• معرفك : '..UserInfousername..
-'\n• رتبتك : '..RinkBot..
-'\n• رسائلك : '..TotalMsg..
-'\n• تعديلاتك : '..TotalEdit..
-'\n• تفاعلك : '..TotalMsgT..
-'\n• بايو : '..getbio(UserId)..
-'*',"md",true) 
+'\n• ID ↣ '..UserId..
+'\n• User ↣ '..UserInfousername..
+'\n• Rink ↣ '..RinkBot..
+'\n• Msg ↣ '..TotalMsg..
+'\n• Edit ↣ '..TotalEdit..
+'\n• Bio ↣ *'..getbio(UserId)..
+'*',"md",true)
 end
 end
 else
@@ -2899,13 +2933,12 @@ local Get_Is_Id = Get_Is_Id:gsub('{عدد الصور}',TotalPhoto)
 return LuaTele.sendText(msg_chat_id,msg_id,'['..Get_Is_Id..']',"md",true) 
 else
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n*• ايديك : '..UserId..
-'\n• معرفك : '..UserInfousername..
-'\n• رتبتك : '..RinkBot..
-'\n• رسائلك : '..TotalMsg..
-'\n• تعديلاتك : '..TotalEdit..
-'\n• تفاعلك : '..TotalMsgT..
-'\n• بايو : '..getbio(UserId)..
+'\n• ID ↣ '..UserId..
+'\n• User ↣ '..UserInfousername..
+'\n• Rink ↣ '..RinkBot..
+'\n• Msg ↣ '..TotalMsg..
+'\n• Edit ↣ '..TotalEdit..
+'\n• Bio ↣ *'..getbio(UserId)..
 '*',"md",true) 
 end
 end
@@ -2924,13 +2957,12 @@ local TotalMsg = Redis:get(TheRhp..'Rhp:Num:Message:User'..msg_chat_id..':'..Mes
 local TotalEdit = Redis:get(TheRhp..'Rhp:Num:Message:Edit'..msg_chat_id..Message_Reply.sender.user_id) or 0
 local TotalMsgT = Total_message(TotalMsg) 
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n*⇜ ايديه ↢ '..UserId..
-'\n⇜ معرفه ↢ '..UserInfousername..
-'\n⇜ رتبته ↢ '..RinkBot..
-'\n⇜ رسائله ↢ '..TotalMsg..
-'\n⇜ تعديلاته ↢ '..TotalEdit..
-'\n⇜ تفاعله ↢ '..TotalMsgT..
-'*',"md",true) 
+'\n• ID ↣ '..UserId..
+'\n• User ↣ '..UserInfousername..
+'\n• Rink ↣ '..RinkBot..
+'\n• Msg ↣ '..TotalMsg..
+'\n• Edit ↣ '..TotalEdit..
+'',"md",true) 
 end
 if text and text:match('^ايدي @(%S+)$') or text and text:match('^كشف @(%S+)$') then
 local UserName = text:match('^ايدي @(%S+)$') or text:match('^كشف @(%S+)$')
@@ -2950,13 +2982,12 @@ local TotalMsg = Redis:get(TheRhp..'Rhp:Num:Message:User'..msg_chat_id..':'..Use
 local TotalEdit = Redis:get(TheRhp..'Rhp:Num:Message:Edit'..msg_chat_id..UserId_Info.id) or 0
 local TotalMsgT = Total_message(TotalMsg) 
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n*⇜ ايديه : '..UserId..
-'\n⇜ معرفه : @'..UserName..
-'\n⇜ رتبته : '..RinkBot..
-'\n⇜ رسائله : '..TotalMsg..
-'\n⇜ تعديلاته : '..TotalEdit..
-'\n⇜ تفاعله : '..TotalMsgT..
-'*',"md",true) 
+'\n• ID ↣ '..UserId..
+'\n• User ↣ @'..UserName..
+'\n• Rink ↣ '..RinkBot..
+'\n• Msg ↣ '..TotalMsg..
+'\n• Edit ↣ '..TotalEdit..
+'',"md",true) 
 end
 
 if text == "مسح الرتب" then    
@@ -4385,137 +4416,6 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {{{text = 'مسح المكتومين', data = msg.sender.user_id..'/SilentGroupGroup'},},}}
 return LuaTele.sendText(msg_chat_id, msg_id, ListMembers, 'md', false, false, false, false, reply_markup)
-end
-
-if text and text:match("^(.*)$") then
-if Redis:get(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "true" then
-Redis:set(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id, "true1")
-Redis:set(TheRhp.."Rhp1:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id, text)
-Redis:sadd(TheRhp.."Rhp1:List:Rd:Sudo"..msg.chat_id, text)
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = '- تغيير الرد', data = msg.sender.user_id..'/chengreplygg'},
-},
-{
-{text = '- الغاء الامر', data = msg.sender.user_id..'/delamrredis'},
-},
-}
-}
-return  LuaTele.sendText(msg_chat_id,msg_id, '\nارسل لي الكلمه الان ',"md",true, false, false, false, reply_markup) 
-end
-end
-if text and text:match("^(.*)$") then
-if Redis:get(TheRhp.."Rhp1:Set:On"..msg.sender.user_id..":"..msg.chat_id) == "true" then
-Redis:del(TheRhp..'Rhp1:Add:Rd:Sudo:Text'..text..msg.chat_id)
-Redis:del(TheRhp..'Rhp1:Add:Rd:Sudo:Text1'..text..msg.chat_id)
-Redis:del(TheRhp..'Rhp1:Add:Rd:Sudo:Text2'..text..msg.chat_id)
-Redis:del(TheRhp.."Rhp1:Set:On"..msg.sender.user_id..":"..msg.chat_id)
-Redis:srem(TheRhp.."Rhp1:List:Rd:Sudo"..msg.chat_id, text)
-return  LuaTele.sendText(msg_chat_id,msg_id,"تم حذف الرد من ردود المتعدده")
-end
-end
-if text == ("مسح الردود المتعدده") then    
-if not msg.Managers then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(6)..' }* ',"md",true)  
-end
-local list = Redis:smembers(TheRhp.."Rhp1:List:Rd:Sudo"..msg.chat_id)
-for k,v in pairs(list) do  
-Redis:del(TheRhp.."Rhp1:Add:Rd:Sudo:Text"..v..msg.chat_id) 
-Redis:del(TheRhp.."Rhp1:Add:Rd:Sudo:Text1"..v..msg.chat_id) 
-Redis:del(TheRhp.."Rhp1:Add:Rd:Sudo:Text2"..v..msg.chat_id) 
-Redis:del(TheRhp.."Rhp1:List:Rd:Sudo"..msg.chat_id)
-end
- LuaTele.sendText(msg_chat_id,msg_id,"تم حذف ردود المتعدده")
-end
-if text == ("الردود المتعدده") then    
-if not msg.Managers then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(6)..' }* ',"md",true)  
-end
-local list = Redis:smembers(TheRhp.."Rhp1:List:Rd:Sudo"..msg.chat_id)
-text = "\nقائمة ردود المتعدده \n━━━━━━━━\n"
-for k,v in pairs(list) do
-db = "رساله "
-text = text..""..k.." - ("..v..") ↢ ("..db..")\n"
-end
-if #list == 0 then
-text = "لا توجد ردود متعدده"
-end
- LuaTele.sendText(msg_chat_id,msg_id,"["..text.."]")
-end
-if text == "اضف رد متعدد" then    
-if not msg.Managers then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(6)..' }* ',"md",true)  
-end
-Redis:set(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,true)
-return  LuaTele.sendText(msg_chat_id,msg_id,"ارسل الرد الذي اريد اضافته")
-end
-if text == "حذف رد متعدد" then    
-if not msg.Managers then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(6)..' }* ',"md",true)  
-end
-Redis:set(TheRhp.."Rhp1:Set:On"..msg.sender.user_id..":"..msg.chat_id,true)
-return  LuaTele.sendText(msg_chat_id,msg_id,"ارسل الان الكلمه لحذفها ")
-end
-if text then  
-local test = Redis:get(TheRhp.."Rhp1:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id)
-if Redis:get(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "true1" then
-Redis:set(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,'rd1')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-Redis:set(TheRhp.."Rhp1:Add:Rd:Sudo:Text"..test..msg.chat_id, text)  
-end  
- LuaTele.sendText(msg_chat_id,msg_id,"تم حفظ الرد الاول ارسل الرد الثاني")
-return false  
-end  
-end
-if text then  
-local test = Redis:get(TheRhp.."Rhp1:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id)
-if Redis:get(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "rd1" then
-Redis:set(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,'rd2')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-Redis:set(TheRhp.."Rhp1:Add:Rd:Sudo:Text1"..test..msg.chat_id, text)  
-end  
- LuaTele.sendText(msg_chat_id,msg_id,"تم حفظ الرد الثاني ارسل الرد الثالث")
-return false  
-end  
-end
-if text then  
-local test = Redis:get(TheRhp.."Rhp1:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id)
-if Redis:get(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "rd2" then
-Redis:set(TheRhp.."Rhp1:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,'rd3')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-Redis:set(TheRhp.."Rhp1:Add:Rd:Sudo:Text2"..test..msg.chat_id, text)  
-end  
- LuaTele.sendText(msg_chat_id,msg_id,"تم حفظ الرد")
-return false  
-end  
-end
-if text then
-local Text = Redis:get(TheRhp.."Rhp1:Add:Rd:Sudo:Text"..text..msg.chat_id)   
-local Text1 = Redis:get(TheRhp.."Rhp1:Add:Rd:Sudo:Text1"..text..msg.chat_id)   
-local Text2 = Redis:get(TheRhp.."Rhp1:Add:Rd:Sudo:Text2"..text..msg.chat_id)   
-if Text or Text1 or Text2 then 
-local texting = {
-Text,
-Text1,
-Text2
-}
-Textes = math.random(#texting)
- LuaTele.sendText(msg_chat_id,msg_id,texting[Textes])
-end
 end
 if text and text:match("^(.*)$") then
 if Redis:get(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "true" then
@@ -6122,6 +6022,18 @@ Redis:set(TheRhp.."Rhp:Status:Id"..msg_chat_id,true)
 LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"⇜ ابشر فعلت الايدي").Lock,"md",true)  
 return false
 end 
+if text == "تفعيل صورتي" then 
+if not msg.Addictive then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
+end
+if ChannelJoin(msg) == false then
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/'..Redis:get(TheRhp..'Rhp:Channel:Join')}, },}}
+return LuaTele.sendText(msg.chat_id,msg.id,'*\n⇜ عليك الاشتراك في قناة البوت لاستخدام الاوامر*',"md",false, false, false, false, reply_markup)
+end
+Redis:set(TheRhp.."Rhp:Status:photo"..msg_chat_id,true) 
+LuaTele.sendText(msg_chat_id,msg_id,Reply_Status(msg.sender.user_id,"⇜ ابشر فعلت صورتي").Lock,"md",true)  
+return false
+end 
 if text == "تفعيل الايدي بالصوره" then 
 if not msg.Addictive then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(7)..' }* ',"md",true)  
@@ -6677,18 +6589,19 @@ if text == "حذف رد انلاين" then
     Redis:del(TheRhp.."Rd:Manager:inline:link"..text..msg_chat_id)
     Redis:sadd(TheRhp.."List:Manager:inline"..msg_chat_id.."", text)
     LuaTele.sendText(msg_chat_id,msg_id,[[
-    ↯︙ارسل لي الرد سواء كان 
-    ❨ ملف ، ملصق ، متحركه ، صوره
-     ، فيديو ، بصمه الفيديو ، بصمه ، صوت ، رساله ❩
-    ↯︙يمكنك اضافة الى النص ..
-    ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-     `{اليوزر}` ↬ معرف المستخدم
-     `{الرسائل}` ↬ عدد الرسائل
-     `{الاسم}` ↬ اسم المستخدم
-     `{الايدي}` ↬ ايدي المستخدم
-     `{الرتبه}` ↬ رتبة المستخدم
-     `{التعديل}` ↬ عدد التعديلات
-    
+⇜ حلو , ارسل الحين الرد
+( نص,صوره,فيديو,متحركه,بصمه,اغنيه,ملف )
+ويمديك اضافة الدوال ومنها :
+━━━━━━━━━━━━
+`{اليوزر}` ↤ يوزر المستخدم
+`{الرسائل}` ↤ رسائل المستخدم
+`{الاسم}` ↤ اسم المستخدم
+`{الايدي}` ↤ ايدي المستخدم
+`{الرتبه}` ↤ رتبه المستخدم
+`{التعديل}` ↤ تعديلات المستخدم
+`{المجوهرات}` ↤ مجوهرات المستخدم
+`{البايو}` ↤ بايو المستخدم
+`{التاريخ}` ↤ تاريخ اليوم
     ]],"md",true)  
     return false
     end
@@ -6778,12 +6691,12 @@ if text == "حذف رد انلاين" then
   local TotalMsg = Total_message(NumMsg) 
   local Status_Gps = msg.Name_Controller
   local NumMessageEdit = Redis:get(TheRhp..'Num:Message:Edit'..msg_chat_id..msg.sender.user_id) or 0
-  local Texingt = Texingt:gsub('{اليوزر}',(UserInfo.username or 'لا يوجد')) 
-  local Texingt = Texingt:gsub('{الاسم}',UserInfo.first_name)
-  local Texingt = Texingt:gsub('{الايدي}',msg.sender.user_id)
-  local Texingt = Texingt:gsub('{التعديل}',NumMessageEdit)
-  local Texingt = Texingt:gsub('{الرسائل}',NumMsg)
-  local Texingt = Texingt:gsub('{الرتبه}',Status_Gps)
+  local Texingt = Texingt:gsub('#username',(UserInfo.username or 'لا يوجد')) 
+  local Texingt = Texingt:gsub('#name',UserInfo.first_name)
+  local Texingt = Texingt:gsub('#id',msg.sender.user_id)
+  local Texingt = Texingt:gsub('#edit',NumMessageEdit)
+  local Texingt = Texingt:gsub('#msgs',NumMsg)
+  local Texingt = Texingt:gsub('#stast',Status_Gps)
   LuaTele.sendText(msg_chat_id,msg_id,'['..Texingt..']',"md",false, false, false, false, reply_markup)  
   end
   if video_note then
@@ -9614,7 +9527,15 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اض�
 return LuaTele.sendText(msg.chat_id,msg.id,'*\n⇜ عليك الاشتراك في قناة البوت لاستخدام الاوامر*',"md",false, false, false, false, reply_markup)
 end
 Redis:set(TheRhp.."Rhp:Set:Manager:rd"..msg.sender.user_id..":"..msg_chat_id,true)
-return LuaTele.sendText(msg_chat_id,msg_id,"⇜ تمام , ارسل الكلمه الان لاضافتها ","md",true)  
+local reply_markup = LuaTele.replyMarkup{
+type = 'inline',
+data = {
+{
+{text = 'الغاء الامر', data = msg.sender.user_id..'/delamrredis'},
+},
+}
+}
+return LuaTele.sendText(msg_chat_id,msg_id,"⇜ حلو , ارسل الرد الحين ","md",false, false, false, false, reply_markup)
 end
 if text == "حذف رد" or text == "مسح رد" then
 if not msg.Addictive then
@@ -9993,7 +9914,7 @@ Bio = ''
 end
 local photo = LuaTele.getUserProfilePhotos(Sudo_Id)
 if photo.total_count > 0 then
-local TestText = "  ❲ Developers Bot ❳\n— — — — — — — — —\n ⇜ *Dev Name* :  ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")\n⇜ *Dev Bio* : [❲ "..Bio.." ❳]"
+local TestText = " • المطور ↢ ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")"
 keyboardd = {} 
 keyboardd.inline_keyboard = {
 {
@@ -10003,28 +9924,9 @@ keyboardd.inline_keyboard = {
 local msg_id = msg.id/2097152/0.5 
 return https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id='..msg.chat_id..'&caption='..URL.escape(TestText)..'&photo='..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboardd))
 else
-local TestText = "  ❲ Developers Source ❳\n— — — — — — — — —\n ⇜ *Dev Name* :  ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")\n⇜ *Dev Bio* : [❲ "..Bio.." ❳]"
+local TestText = " • المطور ↢ ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")"
 local msg_id = msg.id/2097152/0.5 
 return https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id .. '&text=' .. URL.escape(TestText).."&reply_to_message_id="..msg_id.."&parse_mode=markdown")
-end
-end
-if text == 'جمالي' or text == 'نسبه جمالي' then
-if not Redis:get(TheRhp.."Rhp:Status:gamle"..msg_chat_id) then
-return false
-end
-local ban = LuaTele.getUser(msg.sender.user_id)
-local photo = LuaTele.getUserProfilePhotos(msg.sender.user_id)
-local nspp = {"10","20","30","35","75","34","66","82","23","19","55","80","63","32","27","89","99","98","79","100","8","3","6","0",}
-local rdbhoto = nspp[math.random(#nspp)]
-if photo.total_count > 0 then
-data = {} 
-data.inline_keyboard = {
-{
-{text =' نسبة جمالك ياحلو'..rdbhoto..' 🙏😔🦋',url = "https://t.me/"..ban.username..""}, 
-},
-}
-local msgg = msg_id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&photo=".. URL.escape(rdbhoto).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
 end
 end
 if text and text:match("^قولي (.*)$")then
@@ -10069,14 +9971,7 @@ data = {
 }
 return LuaTele.sendText(msg_chat_id,msg_id,'*⇜ رابط الحذف في جميع مواقع التواصل*',"md",false, false, false, false, reply_markup)
 end
-if text == "تويت بالصور" then
-local t = "ليك تويت في الصوره ↫"
-Rrr = math.random(4,50)
-local m = "https://t.me/wffhvv/"..Rrr..""
-local rep = msg.id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id="..msg_chat_id.."&caption="..URL.escape(t).."&photo="..m.."&reply_to_message_id="..rep.."&parse_mode=Markdown")
-end
-if text == 'السورس' or text == 'سورس' or text == 'يا سورس' or text == 'source' then
+if text == 'السورس' or text == 'سورس' then
 photo = "https://t.me/kkznk/1074"
 local T =[[
 𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝑺𝒐𝒖𝒓𝒄𝒆 𝑭𝒂𝒘𝒂𝒛 .
@@ -10106,19 +10001,27 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = 'م1', data = msg.sender.user_id..'/help1'}, {text = 'م2', data = msg.sender.user_id..'/help2'},
+{text = '❶', data = msg.sender.user_id..'/help1'}, {text = '❷', data = msg.sender.user_id..'/help2'}, 
 },
 {
-{text = 'م3', data = msg.sender.user_id..'/help3'},
+{text = '❸', data = msg.sender.user_id..'/help3'}, {text = '❹', data = msg.sender.user_id..'/help4'},
 },
 {
-{text = 'الاغاني', data = msg.sender.user_id..'/help4'}, {text = 'التسليه', data = msg.sender.user_id..'/help5'},
+{text = 'اوامر القفل', data = msg.sender.user_id..'/NoNextSeting'}, {text = 'اوامر التعطيل', data = msg.sender.user_id..'/listallAddorrem'}, 
+},
+{
+{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/kkznk"},
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id, [[*⇜ هلا فيك في اوامر البوت
+return LuaTele.sendText(msg_chat_id,msg_id, [[⇜ اهلين عيني بـ اوامر البوت
+━━━━━━━━━━━━
+✯ م1 ↢ اوامر الحماية
+✯ م2 ↢ اوامر الرفع والتنزيل
+✯ م3 ↢ اوامر الوضع والخدمة
+✯ م4 ↢ اوامر التسلية
 
-للاستفسار -* @ukkkp
+✧ - [Dev](T.me/ukkkp)
 ]],"md",false, false, false, false, reply_markup)
 end
 if text == 'تحديث' then
@@ -10837,7 +10740,48 @@ name = string.gsub(name,"حاسوب","س ا ح و ب")
 name = string.gsub(name,"انترنيت","ا ت ن ر ن ي ت")
 name = string.gsub(name,"ساحه","ح ا ه س")
 name = string.gsub(name,"جسر","ر ج س")
-return LuaTele.sendText(msg_chat_id,msg_id,"اسرع واحد يرتب ( "..name.." )","md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,"اسرع واحد يرتب ↢ ( "..name.." )","md",true)  
+end
+end
+if text == "امثله" then
+if Redis:get(TheRhp.."Rhp:Status:Games"..msg.chat_id) then
+Fawaz = {"سبقني","يشويه","مجرب","مقصه","يثمنك","عون","بعين","الكذب","غبن","حلاله","الدحه","الطير","ونصيب","فار","طيعه","فانوس","محبته","معه","مخابر","نخله","الدله","السواهي","ثور","مستعجل","قصيره","المنقوشه","حليمه","عبوديه","علينا","جاره","يشبع","بنا","جيعانه"};
+name = Fawaz[math.random(#Fawaz)]
+Redis:set(TheRhp.."Rhp:Game:Amt"..msg.chat_id,name)
+name = string.gsub(name,"سبقني","ضربني وبكى .... واشتكى")
+name = string.gsub(name,"يشويه","اللي ما يعرف الصقر ....")
+name = string.gsub(name,"مجرب","اسأل .... ولا تسأل طبيب")
+name = string.gsub(name,"مقصه","كل شارب وله ....")
+name = string.gsub(name,"يثمنك","اللي ما يعرفك ما ....")
+name = string.gsub(name,"عون","جبتك .... صرتلي فرعون")
+name = string.gsub(name,"بعين","كلٍ يرى الناس .... طبعه")
+name = string.gsub(name,"الكذب","حبل .... قصير")
+name = string.gsub(name,"غبن","الحي يحييك ، والميت يزيدك ....")
+name = string.gsub(name,"حلاله","يامن شراله من .... علّه")
+name = string.gsub(name,"الدحه","اللي يبغا .... ما يقول أحه")
+name = string.gsub(name,"الطير","اذا كان فيه خير ماكان رماه ....")
+name = string.gsub(name,"ونصيب","الزواج قسمه ....")
+name = string.gsub(name,"فار","اذا غاب القط العب يا ....")
+name = string.gsub(name,"طيعه","اذا ماطاعك الزمن ....")
+name = string.gsub(name,"فانوس","المنحوس منحوس لو علقو على راسه ....")
+name = string.gsub(name,"محبته","اللي تتغير .... تتغير مخدته")
+name = string.gsub(name,"معه","الغايب حجته ....")
+name = string.gsub(name,"مخابر","الرجال .... مو مناظر")
+name = string.gsub(name,"نخله","الطول طول .... والعقل عقل صخله")
+name = string.gsub(name,"الدله","اقلب .... على فمها تطلع البنت على امها")
+name = string.gsub(name,"السواهي","تحت .... دواهي")
+name = string.gsub(name,"ثور","قال .... قال احلبوه")
+name = string.gsub(name,"مستعجل","الطفران يعدي السوق ....")
+name = string.gsub(name,"قصيره","العين بصيره واليد ....")
+name = string.gsub(name,"المنقوشه","خذ المفقوشه حتى تجيء ....")
+name = string.gsub(name,"حليمه","رجعت .... لعادتها القديمه")
+name = string.gsub(name,"عبوديه","حمصه في حريه ولا وليمه في ....")
+name = string.gsub(name,"علينا","نسينا ماكلينا والشحوم اللي كانت ....")
+name = string.gsub(name,"جاره","قرصه في ناره وعينه على ....")
+name = string.gsub(name,"يشبع","اللي مايقنع ما ....")
+name = string.gsub(name,"بنا","رضينا بالهم والهم ما رضي ....")
+name = string.gsub(name,"جيعانه","القناعة شبعانه والطمعانه ....")
+return LuaTele.sendText(msg_chat_id,msg_id,"اكمل المثل التالي ↢ ( "..name.." )","md",true)  
 end
 end
 if text == "حزوره" then
@@ -10878,7 +10822,7 @@ name = string.gsub(name,"الثلج","انا ابن الماء فان تركون
 name = string.gsub(name,"الاسفنج","كلي ثقوب ومع ذالك احفض الماء فمن اكون ؟")
 name = string.gsub(name,"الصوت","اسير بلا رجلين ولا ادخل الا بالاذنين فمن انا ؟")
 name = string.gsub(name,"بلم","حامل ومحمول نصف ناشف ونصف مبلول فمن اكون ؟ ")
-return LuaTele.sendText(msg_chat_id,msg_id,"اول واحد يحلها ⇠ ( "..name.." )","md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,"اول واحد يحلها ↢ ( "..name.." )","md",true)  
 end
 end
 if text == "معاني" then
@@ -11161,6 +11105,13 @@ Redis:set(TheRhp.."Rhp:Game:Estimate"..msg.chat_id..msg.sender.user_id,Num)
 return LuaTele.sendText(msg_chat_id,msg_id,"\n⇜ اهلا بك عزيزي في لعبة التخمين :\nٴ━━━━━━━━━━\n".."⇜ ملاحظه لديك { 3 } محاولات فقط فكر قبل ارسال تخمينك \n\n".."⇜ سيتم تخمين عدد ما بين ال {1 و 20} اذا تعتقد انك تستطيع الفوز جرب واللعب الان ؟ ","md",true)  
 end
 end
+if text == "محيبس" or text == "بات" then   
+if Redis:get(TheRhp.."Rhp:Status:Games"..msg.chat_id) then
+Num = math.random(1,6)
+Redis:set(TheRhp.."Rhp:Game:Hgj"..msg.chat_id..msg.sender.user_id,Num)  
+return LuaTele.sendText(msg_chat_id,msg_id,"\n*➀       ➁     ➂      ➃      ➄     ➅\n↓      ↓     ↓      ↓     ↓     ↓\n👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊 ‹› 👊\n\n↢ اختر لأستخراج المحيبس الايد التي تحمل المحيبس\n↢ الفائز يحصل على ( 3 ) من المجوهرات*","md",true)  
+end
+end
 if text and text:match("^بيع مجوهراتي (%d+)$") then
 local NumGame = text:match("^بيع مجوهراتي (%d+)$") 
 if tonumber(NumGame) == tonumber(0) then
@@ -11392,7 +11343,7 @@ data = {
 },
 }
 }
-return LuaTele.sendText(msg_chat_id,msg_id,'⇜ اهلا عيني المطور\n⇜ انت المطور الاساسي هنا\n...\n⇜ تقدر تتحكم بكل الاوامر الموجودة بالكيبورد\n⇜ اضغط على الامر اللي تبيه بس', 'md', false, false, false, false, reply_markup)
+return LuaTele.sendText(msg_chat_id,msg_id,'⇜ ارحب مطوري فوفو\n⇜ انت المطور الاساسي هنا\n...\n⇜ تقدر تتحكم بكل الاوامر الموجودة بالكيبورد\n⇜ اضغط على الامر اللي تبيه بس', 'md', false, false, false, false, reply_markup)
 end
 end
 
@@ -12110,27 +12061,6 @@ Redis:set(TheRhp.."Rhp:Redis:Id:Group"..ChatId..""..IdUser,true)
 LuaTele.editMessageText(ChatId,Msg_id,"⇜ ارسل لي الايدي الان", 'md', true)
 end
 end
-if Text and Text:match('(%d+)/chengreplygg') then
-local listYt = Text:match('(%d+)/chengreplygg')
-if tonumber(listYt) == tonumber(IdUser) then
-Redis:set(TheRhp.."Rhp1:Set:Rd"..IdUser..":"..ChatId, "true")
-LuaTele.editMessageText(ChatId,Msg_id,"⇜ ارسل لي الرد الان", 'md', true)
-end
-end
-if Text and Text:match('(%d+)/chengreplyg') then
-local listYt = Text:match('(%d+)/chengreplyg')
-if tonumber(listYt) == tonumber(IdUser) then
-Redis:set(TheRhp.."Rhp:Set:Manager:rd"..IdUser..":"..ChatId,"true")
-LuaTele.editMessageText(ChatId,Msg_id,"⇜ ارسل لي الرد الان", 'md', true)
-end
-end
-if Text and Text:match('(%d+)/chengreplys') then
-local listYt = Text:match('(%d+)/chengreplys')
-if tonumber(listYt) == tonumber(IdUser) then
-Redis:set(TheRhp.."Rhp:Set:Rd"..IdUser..":"..ChatId,true)
-LuaTele.editMessageText(ChatId,Msg_id,"⇜ ارسل لي الرد الان", 'md', true)
-end
-end
 
 if Text and Text:match('(%d+)/ban0') then
 local UserId = Text:match('(%d+)/ban0')
@@ -12366,67 +12296,62 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = '• م1 •', data = IdUser..'/help3'}, {text = 'م2', data = IdUser..'/help2'}, 
+{text = 'التالي', data = IdUser..'/help2'}, {text = 'رجوع', data = IdUser..'/helpall'},
 },
 {
-{text = 'م3', data = IdUser..'/help3'},
-},
-{
-{text = 'الاغاني', data = IdUser..'/help4'}, {text = 'التسليه', data = IdUser..'/help5'}, 
+{text = 'القائمه الرئيسية', data = IdUser..'/helpall'},
 },
 }
 }
 local TextHelp = [[
+*- اوامر الحماية*
+✯ قفل - فتح ↢ الروابط  
+✯ قفل - فتح ↢ المعرف 
+✯ قفل - فتح ↢ التاك 
+✯ قفل - فتح ↢ الشارحة 
+✯ قفل - فتح ↢ التعديل 
+✯ قفل - فتح ↢ التثبيت  
+✯ قفل - فتح ↢ المتحركه
+✯ قفل - فتح ↢ الدردشه 
+✯ قفل - فتح ↢ الصور
+✯ قفل - فتح ↢ الملفات
+✯ قفل - فتح ↢ البوتات
+✯ قفل - فتح ↢ التكرار 
+✯ قفل - فتح ↢ لكلايش
+✯ قفل - فتح ↢ الانلاين 
+✯ قفل - فتح ↢ الفيديو
+✯ قفل - فتح ↢ السيلفي
+✯ قفل - فتح ↢ الماركدوان
+✯ قفل - فتح ↢ التوجيه
+✯ قفل - فتح ↢ الاغاني 
+✯ قفل - فتح ↢ الصوت
+✯ قفل - فتح ↢ الجهات
+✯ قفل - فتح ↢ الاشعارات
+✯ قفل - فتح ↢ فتح الكل
 
-*❨ اوامر الرفع والتنزيل ❩*
+*-اوامر التعطيل*
+✯ تفعيل - تعطيل ↢ الترحيب 
+✯ تفعيل - تعطيل ↢ الردود 
+✯ تفعيل - تعطيل ↢ الرفع 
+✯ تفعيل - تعطيل ↢ الايدي
+✯ تفعيل - تعطيل ↢ الساوند
+✯ تفعيل - تعطيل ↢ التيك
+✯ تفعيل - تعطيل ↢ اليوتيوب
+✯ تفعيل - تعطيل ↢ الرابط
+✯ تفعيل - تعطيل ↢ اطردني
+✯ تفعيل - تعطيل ↢ الحظر
+✯ تفعيل - تعطيل ↢ الحمايه
+✯ تفعيل - تعطيل ↢ المنشن
+✯ تفعيل - تعطيل ↢ الايدي بالصوره
+✯ تفعيل - تعطيل ↢ التحقق 
+✯ تفعيل - تعطيل ↢ ردود المطور 
+✯ تفعيل - تعطيل ↢ المسح التلقائي
+✯ تفعيل - تعطيل ↢ الالعاب  
+✯ تفعيل - تعطيل ↢ انطقي 
+✯ تفعيل - تعطيل ↢ صورتي
+✯ تفعيل - تعطيل ↢ التسليه
 
-✯ رفع ↣ ↢ تنزيل مشرف
-✯ رفع ↣ ↢ تنزيل مالك اساسي
-✯ رفع ↣ ↢ تنزيل مالك
-✯ رفع ↣ ↢ تنزيل مدير
-✯ رفع ↣ ↢ تنزيل ادمن
-✯ رفع ↣ ↢ تنزيل مميز
-✯ تنزيل الكل  ↢ بالرد  ↢ لتنزيل الشخص من جميع رتبه
-✯ تنزيل الكل ↢ بدون رد ↢ لتنزيل كل رتب المجموعة
-
-*❨ اوامر المسح ❩*
-
-✯ مسح الكل
-✯ مسح المالكيين
-✯ مسح المنشئين الاساسيين
-✯ مسح المنشئين
-✯ مسح المدراء
-✯ مسح الادمنيه
-✯ مسح المميزين
-✯ مسح المحظورين
-✯ مسح المكتومين
-✯ مسح الرتب
-✯ مسح قائمة المنع
-✯ مسح الردود
-✯ مسح الاوامر المضافه
-✯ مسح + العدد
-✯ مسح بالرد
-✯ مسح الترحيب
-✯ مسح الرابط
-✯ مسح القوانين
-✯ مسح قائمة التثبيت
-
-*❨ اوامر الطرد الحظر الكتم ❩*
-
-✯ حظر
-✯ طرد
-✯ كتم
-✯ تقييد
-✯ الغاء الحظر
-✯ الغاء الكتم
-✯ الغاء التقييد
-✯ رفع القيود ↢ لحذف الكتم,الحظر,التقييد
-✯ منع بالرد
-✯ الغاء منع بالرد
-✯ طرد البوتات
-✯ طرد المحذوفين
-✯ كشف البوتات
-
+✧ - [Dev](T.me/ukkkp)
 ]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
@@ -12437,48 +12362,40 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = 'م1', data = IdUser..'/help3'}, {text = '• م2 •', data = IdUser..'/help2'}, 
+{text = 'التالي', data = IdUser..'/help3'}, {text = 'رجوع', data = IdUser..'/help1'},
 },
 {
-{text = 'م3', data = IdUser..'/help3'},
-},
-{
-{text = 'الاغاني', data = IdUser..'/help4'}, {text = 'التسليه', data = IdUser..'/help5'}, 
+{text = 'القائمه الرئيسية', data = IdUser..'/helpall'},
 },
 }
 }
 local TextHelp = [[
-*❨ اوامر الوضع ❩*
+*- اوامر الرفع والتنزيل*
+✯ رفع - تنزيل ↢ مشرف
+✯ رفع - تنزيل ↢ مالك
+✯ رفع - تنزيل ↢ منشئ اساسي
+✯ رفع - تنزيل ↢ منشئ
+✯ رفع - تنزيل ↢ مدير
+✯ رفع - تنزيل ↢ ادمن
+✯ رفع - تنزيل ↢ مميز
 
-✯ وضع ترحيب
-✯ وضع قوانين
-✯ وضع وصف
-✯ وضع رابط
-✯ اضف امر
-✯ تغيير رتبه ↢ ❨ مالك ، منشئ اساسي ، منشئ ، مدير ، ادمن ، مميز + 
-اسم الرتبه ❩
+*- اوامر الحظر والطرد والتقييد*
+✯ حظر ↢ بالرد ، بالمعرف ، بالايدي
+✯ الغاء حظر ↢ بالرد ، بالمعرف ، بالايدي
+✯ طرد ↢ بالرد ، بالمعرف ، بالايدي
+✯ كتم ↢ بالرد ، بالمعرف ، بالايدي
+✯ الغاء كتم ↢ بالرد ، بالمعرف ، بالايدي
+✯ تقييد ↢ بالرد ، بالمعرف ، بالايدي
+✯ الغاء تقييد ↢ بالرد ، بالمعرف ، بالايدي
+✯ منع - الغاء منع ↢ وبعدها ارسل الكلمه ، الملصق ، المتحركه ، 
 
-*❨ اوامر رؤية الاعدادات ❩*
+*- اوامر المسح*
+✯ مسح المنشئين ↢ لمسح المنشئين
+✯ مسح المدراء ↢ لمسح المدراء
+✯ مسح الادمنيه ↢ لمسح الادمنيه
+✯ مسح المميزين ↢ لمسح المميزين
 
-✯ المطورين
-✯ المالكيين
-✯ المنشئين الاساسين
-✯ المنشئين
-✯ المدراء
-✯ الادمنيه
-✯ المميزين
-✯ المحظورين
-✯ القوانين
-✯ قائمه المنع
-✯ المكتومين
-✯ المطور 
-✯ معلوماتي 
-✯ اوامر التعطيل  
-✯ الوسائط
-✯ اوامر القفل
-✯ المجموعه
-✯ الرابط
-
+✧ - [Dev](t.me/ukkkp)
 ]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
@@ -12489,76 +12406,54 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-
-{text = 'م1', data = IdUser..'/help3'}, {text = 'م2', data = IdUser..'/help2'}, 
+{text = 'التالي', data = IdUser..'/help4'}, {text = 'رجوع', data = IdUser..'/help2'},
 },
 {
-{text = '• م3 •', data = IdUser..'/help3'},
-},
-{
-{text = 'الاغاني', data = IdUser..'/help4'}, {text = 'التسليه', data = IdUser..'/help5'}, 
+{text = 'القائمه الرئيسية', data = IdUser..'/helpall'},
 },
 }
 }
 local TextHelp = [[
-*❨ اوامر الردود ❩*
+*- اوامر الوضع*
+✯ ضع رابط
+✯ ضع قوانين
+✯ ضع ترحيب
+✯ ضع تكرار + العدد
 
-✯ الردود ↢ تشوف كل الردود المضافه
-✯ اضف رد ↢ عشان تضيف رد
-✯ مسح رد ↢ عشان تمسح الرد
-✯ مسح الردود ↢ تمسح كل الردود
+*- رؤيه الاعدادات*
+✯ الرابط ↢ لعرض الرابط
+✯ الادمنيه ↢ لعرض الادمنيه
+✯ المدراء ↢ لعرض المدراء
+✯ المشرفين ↢ لعرض المشرفين
+✯ القوانين ↢ لعرض القوانين
+✯ انشاء رابط ↢ لأنشاء رابط
+✯ الحمايه ↢ لعرض كل الاعدادات
+✯ المكتومين ↢ لعرض المكتومين
+✯ المحظورين ↢ لعرض المحظورين
+✯ قائمه الاوامر ↢ لمعرفة الاوامر المضافة
+✯ مسح امر ↢ لمسح امر
+✯ اضف امر ↢ لأضافه امر
+✯ اوامر القفل ↢ لرؤيه اوامر القفل
+✯ اوامر التعطيل ↢ لرؤيه اوامر التعطيل
 
-*❨ اوامر القفل والفتح بالمسح ❩*
+*- اوامر الخدمة*
+✯ ايدي ↢ لعرض صورتك ومعلوماتك
+✯ ايديي ↢ لعرض ايديك
+✯ ايدي بالرد ↢ لعرض ايدي الشخص
+✯ جهاتي ↢ لعرض جهاتك
+✯ رسائلي ↢ لعرض جهاتك
+✯ تعديلاتي ↢ لعرض تعديلاتك
+✯ مجوهراتي ↢ لعرض مجوهراتك
+✯ الالعاب ↢ لعرض الالعاب
+✯ معلوماتي ↢ لعرض معلوماتك
+✯ كشف بالرد ↢ لرؤيه معلومات الشخص
+✯ كشف بالمعرف ↢ لرؤيه معلومات الشخص
+✯ طرد المحذوفين ↢ لطرد الحسابات المحذوفه
+✯ رابط الحذف ↢ لحذف حساباتك بالتواصل الاجتماعي
+✯ كشف البوتات ↢ لرؤيه البوتات بالمجموعة
+✯ طرد البوتات ↢ لطرد كل البوتات
 
-‹ تستطيع قفل الحمايه كما يلي ›
-✯ ( بالتقييد ~ بالكتم ~ بالحظر )
-
-✯ قفل ↣ ↢ فتح الروابط  
-✯ قفل ↣ ↢ فتح المعرف 
-✯ قفل ↣ ↢ فتح التاك 
-✯ قفل ↣ ↢ فتح الشارحة 
-✯ قفل ↣ ↢ فتح التعديل 
-✯ قفل ↣ ↢ فتح التثبيت  
-✯ قفل ↣ ↢ فتح المتحركه
-✯ قفل ↣ ↢ فتح الدردشه 
-✯ قفل ↣ ↢ فتح الصور
-✯ قفل ↣ ↢ فتح الملفات
-✯ قفل ↣ ↢ فتح البوتات
-✯ قفل ↣ ↢ فتح التكرار 
-✯ قفل ↣ ↢ فتح الكلايش
-✯ قفل ↣ ↢ فتح الانلاين 
-✯ قفل ↣ ↢ فتح الفيديو
-✯ قفل ↣ ↢ فتح السيلفي
-✯ قفل ↣ ↢ فتح الماركدوان
-✯ قفل ↣ ↢ فتح التوجيه
-✯ قفل ↣ ↢ فتح الاغاني 
-✯ قفل ↣ ↢ فتح الصوت
-✯ قفل ↣ ↢ فتح الجهات
-✯ قفل ↣ ↢ فتح الاشعارات
-✯ قفل ↣ ↢ فتح الكل
-
-*❨ اوامر التفعيل والتعطيل ❩*
-
-✯ تفعيل ↣ ↢ تعطيل الترحيب 
-✯ تفعيل ↣ ↢ تعطيل الردود 
-✯ تفعيل ↣ ↢ تعطيل الرفع 
-✯ تفعيل ↣ ↢ تعطيل الايدي
-✯ تفعيل ↣ ↢ تعطيل الساوند
-✯ تفعيل ↣ ↢ تعطيل التيك
-✯ تفعيل ↣ ↢ تعطيل اليوتيوب
-✯ تفعيل ↣ ↢ تعطيل الرابط
-✯ تفعيل ↣ ↢ تعطيل اطردني
-✯ تفعيل ↣ ↢ تعطيل الحظر
-✯ تفعيل ↣ ↢ تعطيل الحمايه
-✯ تفعيل ↣ ↢ تعطيل المنشن
-✯ تفعيل ↣ ↢ تعطيل الايدي بالصوره
-✯ تفعيل ↣ ↢ تعطيل التحقق 
-✯ تفعيل ↣ ↢ تعطيل ردود المطور 
-✯ تفعيل ↣ ↢ تعطيل المسح التلقائي
-✯ تفعيل ↣ ↢ تعطيل الالعاب  
-✯ تفعيل ↣ ↢ تعطيل انطقي 
-✯ تفعيل ↣ ↢ تعطيل صورتي
-✯ تفعيل ↣ ↢ تعطيل جمالي
+✧ - [Dev](t.me/ukkkp)
 ]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
@@ -12569,79 +12464,41 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = 'م1', data = IdUser..'/help3'}, {text = 'م2', data = IdUser..'/help2'}, 
+{text = 'رجوع', data = IdUser..'/helpall'},
 },
 {
-{text = 'م3', data = IdUser..'/help3'},
-},
-{
-{text = '• الاغاني •', data = IdUser..'/help4'}, {text = 'التسليه', data = IdUser..'/help5'}, 
+{text = 'القائمه الرئيسية', data = IdUser..'/helpall'},
 },
 }
 }
 local TextHelp = [[
-✶ اليـوتيوب
-- امر التشغيل ❨ تفعيل اليوتيوب ❩
-- امر التعطيل ❨ تعطيل اليوتيوب ❩
+*- اوامر التسلية*
+✯ غنيلي
+✯ ايديت
+✯ اذكار
+✯ افتار بنات
+✯ افتار عيال
+✯ افتار انمي
+✯ لو خيروك
+✯ انصحني
+✯ احسب + عمرك
+✯ زخرفه + اسمك
+✯ برج + برجك
 
-✶ البـحث عن اغنية ↓
-↞ بحث اسم الاغنية
-]]
-LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
-end
-elseif Text and Text:match('(%d+)/help5') then
-local UserId = Text:match('(%d+)/help5')
-if tonumber(IdUser) == tonumber(UserId) then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
+*- اوامر الرفع بالتسليه*
+✯ رفع - تنزيل ↢ غبي 
+✯ رفع - تنزيل ↢ حمار
+✯ رفع - تنزيل ↢ هطف
+✯ رفع - تنزيل ↢ حمار
+✯ رفع - تنزيل ↢ مريض
+✯ رفع - تنزيل ↢ بقره
+✯ رفع - تنزيل ↢ قرد
+✯ رفع - تنزيل ↢ سندوله
+✯ رفع - تنزيل ↢ مز
+✯ رفع - تنزيل ↢ كيكه
+✯ رفع - تنزيل ↢ حلاوه
 
-{text = 'م1', data = IdUser..'/help3'}, {text = 'م2', data = IdUser..'/help2'}, 
-},
-{
-{text = 'م3', data = IdUser..'/help3'},
-},
-{
-{text = 'الاغاني', data = IdUser..'/help4'}, {text = '• التسليه •', data = IdUser..'/help5'}, 
-},
-}
-}
-local TextHelp = [[
-*⦗ تفعيل التسليه ⦘*
-*⦗ تعطيل التسليه ⦘*
-
-🍰 ⌯ رفع ↣ ↢ تنزيل كيكه
-🍯 ⌯ رفع ↣ ↢ تنزيل عسل
-💩 ⌯ رفع ↣ ↢ تنزيل زق
-🦓 ⌯ رفع ↣ ↢ تنزيل حمار
-🐄 ⌯ رفع ↣ ↢ تنزيل بقره
-🐩 ⌯ رفع ↣ ↢ تنزيل كلب
-🐒 ⌯ رفع ↣ ↢ تنزيل قرد
-🐐 ⌯ رفع ↣ ↢ تنزيل تيس
-🐂 ⌯ رفع ↣ ↢ تنزيل ثور
-🏅 ⌯ رفع ↣ ↢ تنزيل باعوص
-🐓 ⌯ رفع ↣ ↢ تنزيل دجاجه
-🧱 ⌯ رفع ↣ ↢ تنزيل هطف
-🔫 ⌯ رفع ↣ ↢ تنزيل صياد
-🐏 ⌯ رفع ↣ ↢ تنزيل خاروف
-❤️ ⌯ رفع لقلبي ↣ ↢ تنزيل من قلبي
-👫 ⌯ زواج ↣ ↢ طلاق
-
-⌯ قائمة الكيك
-⌯ قائمة العسل
-⌯ قائمة الزق
-⌯ قائمة الحمير
-⌯ قائمة البقر
-⌯ قائمة الكلاب
-⌯ قائمة القرود
-⌯ قائمة التيس
-⌯ قائمة الثور
-⌯ قائمة البواعيص
-⌯ قائمة الدجاج
-⌯ قائمة الهطوف
-⌯ قائمة الصيادين
-⌯ قائمة الخرفان
+✧ - [Dev](t.me/ukkkp)
 ]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
@@ -12652,20 +12509,27 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = 'م1', data = IdUser..'/help1'}, {text = 'م2', data = IdUser..'/help2'}, 
+{text = '❶', data = IdUser..'/help1'}, {text = '❷', data = IdUser..'/help2'}, 
 },
 {
-{text = 'م3', data = IdUser..'/help3'}, 
+{text = '❸', data = IdUser..'/help3'}, {text = '❹', data = IdUser..'/help4'}, 
 },
 {
-{text = 'الاغاني', data = IdUser..'/help4'}, {text = 'التسليه', data = IdUser..'/help5'}, 
+{text = 'اوامر القفل', data = IdUser..'/NoNextSeting'}, {text = 'اوامر التعطيل', data = IdUser..'/listallAddorrem'}, 
+},
+{
+{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/kkznk"},
 },
 }
 }
-local TextHelp = [[
-*⇜ هلا فيك في اوامر البوت
+local TextHelp = [[⇜ اهلين عيني بـ اوامر البوت
+━━━━━━━━━━━━
+✯ م1 ↢ اوامر الحماية
+✯ م2 ↢ اوامر الرفع والتنزيل
+✯ م3 ↢ اوامر الوضع والخدمة
+✯ م4 ↢ اوامر التسلية
 
-للاستفسار -* @ukkkp
+✧ - [Dev](T.me/ukkkp)
 ]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
@@ -13606,7 +13470,7 @@ data = {
 {text = 'تعطيل الترحيب', data = IdUser..'/'.. 'unmute_welcome'},{text = 'تفعيل الترحيب', data = IdUser..'/'.. 'mute_welcome'},
 },
 {
-{text = 'اتعطيل الايدي', data = IdUser..'/'.. 'unmute_Id'},{text = 'اتفعيل الايدي', data = IdUser..'/'.. 'mute_Id'},
+{text = 'تعطيل الايدي', data = IdUser..'/'.. 'unmute_Id'},{text = 'تفعيل الايدي', data = IdUser..'/'.. 'mute_Id'},
 },
 {
 {text = 'تعطيل الايدي بالصوره', data = IdUser..'/'.. 'unmute_IdPhoto'},{text = 'تفعيل الايدي بالصوره', data = IdUser..'/'.. 'mute_IdPhoto'},
