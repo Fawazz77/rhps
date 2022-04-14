@@ -139,7 +139,7 @@ Status = 0
 DevelopersQ = Redis:sismember(TheRhp.."Rhp:DevelopersQ:Groups",UserId) 
 if UserId == 5124711331 then
 Status = true
-elseif UserId == 1975103841 then
+elseif UserId == 2125444389 then
 Status = true
 elseif UserId == Sudo_Id then  
 Status = true
@@ -165,8 +165,8 @@ Distinguished = Redis:sismember(TheRhp.."Rhp:Distinguished:Group"..ChatId,UserId
 StatusMember = LuaTele.getChatMember(ChatId,UserId).status.luatele
 if UserId == 5124711331 then
 Status = 'الهكر فواز'
-elseif UserId == 1975103841 then
-Status = 'مطور السورس'
+elseif UserId == 2125444389 then
+Status = 'بابا عمار'
 elseif UserId == Sudo_Id then  
 Status = 'المطور الاساسي'
 elseif UserId == TheRhp then
@@ -745,7 +745,7 @@ Distinguished = Redis:sismember(TheRhp.."Rhp:Distinguished:Group"..ChatId,UserId
 StatusMember = LuaTele.getChatMember(ChatId,UserId).status.luatele
 if UserId == 5124711331 then
 Status = true
-elseif UserId == 5124711331 then
+elseif UserId == 2125444389 then
 Status = true
 elseif UserId == Sudo_Id then  
 Status = true
@@ -784,7 +784,7 @@ Distinguished = Redis:sismember(TheRhp.."Rhp:Distinguished:Group"..ChatId,UserId
 StatusMember = LuaTele.getChatMember(ChatId,UserId).status.luatele
 if UserId == 5124711331 then
 Status = true
-elseif UserId == 5124711331 then
+elseif UserId == 2125444389 then
 Status = true
 elseif UserId == Sudo_Id then    
 Status = true
@@ -905,8 +905,8 @@ end
 if tonumber(msg.sender.user_id) == 5124711331 then
 msg.Name_Controller = 'مبرمج السورس '
 msg.The_Controller = 1
-elseif tonumber(msg.sender.user_id) == 5124711331 then
-msg.Name_Controller = 'مطور السورس '
+elseif tonumber(msg.sender.user_id) == 2125444389 then
+msg.Name_Controller = 'بابا عمار '
 msg.The_Controller = 1
 elseif The_ControllerAll(msg.sender.user_id) == true then  
 msg.The_Controller = 1
@@ -2459,12 +2459,12 @@ Informationlua:close()
 return LuaTele.sendText(msg_chat_id,msg_id,"\n⇜  تم تغيير المطور الاساسي اصبح على : [@"..text:gsub('@','').."]","md",true)  
 end
 end
-if text == 'تغيير المطور الاساسي' or text == 'تغيير المطور الاساسي ⌔' then
+if text == 'تغيير المطور الاساسي' or text == 'نقل ملكيه البوت' then
 if not msg.ControllerBot then 
-return LuaTele.sendText(msg_chat_id,msg_id,'\n* ⇜ هاذا الامر يخص 『 '..Controller_Num(1)..' 』* ',"md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص 『 '..Controller_Num(1)..' 』* ',"md",true)  
 end
 Redis:set(TheRhp.."Rhp:AddSudosNew"..msg_chat_id,true)
-return LuaTele.sendText(msg_chat_id,msg_id," ⇜  ارسل معرف المطور الاساسي مع @","md",true)
+return LuaTele.sendText(msg_chat_id,msg_id,"⇜ ارسل معرف المطور الاساسي مع @","md",true)
 end
 if text == 'جلب النسخه الاحتياطيه' or text == 'جلب نسخه احتياطيه' then
 if not msg.ControllerBot then 
@@ -2671,7 +2671,7 @@ end
 Redis:set(TheRhp..'Rhp:Num:Add:Bot',text:match("تعين عدد الاعضاء (%d+)$") ) 
 LuaTele.sendText(msg_chat_id,msg_id,'*⇜  تم تعيين عدد اعضاء تفعيل البوت اكثر من : '..text:match("تعين عدد الاعضاء (%d+)$")..' عضو *',"md",true)  
 elseif text =='الاحصائيات' then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -2957,12 +2957,13 @@ local TotalMsg = Redis:get(TheRhp..'Rhp:Num:Message:User'..msg_chat_id..':'..Mes
 local TotalEdit = Redis:get(TheRhp..'Rhp:Num:Message:Edit'..msg_chat_id..Message_Reply.sender.user_id) or 0
 local TotalMsgT = Total_message(TotalMsg) 
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n• ID ↣ '..UserId..
-'\n• User ↣ '..UserInfousername..
-'\n• Rink ↣ '..RinkBot..
-'\n• Msg ↣ '..TotalMsg..
-'\n• Edit ↣ '..TotalEdit..
-'',"md",true) 
+'\n*⇜ ايديه ↢ '..UserId..
+'\n⇜ معرفه ↢ '..UserInfousername..
+'\n⇜ رتبته ↢ '..RinkBot..
+'\n⇜ رسائله ↢ '..TotalMsg..
+'\n⇜ تعديلاته ↢ '..TotalEdit..
+'\n⇜ تفاعله ↢ '..TotalMsgT..
+'*',"md",true) 
 end
 if text and text:match('^ايدي @(%S+)$') or text and text:match('^كشف @(%S+)$') then
 local UserName = text:match('^ايدي @(%S+)$') or text:match('^كشف @(%S+)$')
@@ -2982,12 +2983,13 @@ local TotalMsg = Redis:get(TheRhp..'Rhp:Num:Message:User'..msg_chat_id..':'..Use
 local TotalEdit = Redis:get(TheRhp..'Rhp:Num:Message:Edit'..msg_chat_id..UserId_Info.id) or 0
 local TotalMsgT = Total_message(TotalMsg) 
 return LuaTele.sendText(msg_chat_id,msg_id,
-'\n• ID ↣ '..UserId..
-'\n• User ↣ @'..UserName..
-'\n• Rink ↣ '..RinkBot..
-'\n• Msg ↣ '..TotalMsg..
-'\n• Edit ↣ '..TotalEdit..
-'',"md",true) 
+'\n*⇜ ايديه ↢ '..UserId..
+'\n⇜ معرفه ↢ @'..UserName..
+'\n⇜ رتبته ↢ '..RinkBot..
+'\n⇜ رسائله ↢ '..TotalMsg..
+'\n⇜ تعديلاته ↢ '..TotalEdit..
+'\n⇜ تفاعله ↢ '..TotalMsgT..
+'*',"md",true) 
 end
 
 if text == "مسح الرتب" then    
@@ -3104,7 +3106,7 @@ if text == 'رتبتي' then
 local ban = LuaTele.getUser(msg.sender.user_id)
 local news = ' '..msg.Name_Controller
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
-{{text =news,url = "https://t.me/ukkkp"}, },}}
+{{text =news,url = "https://t.me/SSSFF0"}, },}}
 return LuaTele.sendText(msg_chat_id,msg_id,'\n⇜ رتبتك هي : '..msg.Name_Controller,"md", false, false, false, false, reply_markup)
 end
 if text == "بايو" or text == "البايو" then
@@ -3218,8 +3220,8 @@ PermissionsUser = '*\n⇜ صلاحيات البوت في المجموعه :\n—
 return LuaTele.sendText(msg_chat_id,msg_id,PermissionsUser,"md",true) 
 end
 
-if text and text:match('^تنظيف (%d+)$') then
-local NumMessage = text:match('^تنظيف (%d+)$')
+if text and text:match('^مسح (%d+)$') then
+local NumMessage = text:match('^مسح (%d+)$')
 if not msg.Managers then
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(6)..' }* ',"md",true)  
 end
@@ -3242,7 +3244,7 @@ local deleteMessages = LuaTele.deleteMessages(msg.chat_id,{[1]= Message})
 var(deleteMessages)
 Message = Message - 1048576
 end
-LuaTele.sendText(msg_chat_id, msg_id, "⇜ تم تنظيف - "..NumMessage.. ' رساله', 'md')
+LuaTele.sendText(msg_chat_id, msg_id, "⇜ تم مسح - "..NumMessage.. ' رساله', 'md')
 end
 
 if text and text:match('^تنزيل (.*) @(%S+)$') then
@@ -3330,7 +3332,7 @@ end
 end
 if UserName[1] == "مدير" then
 if not msg.Originators then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n* ⇜ هاذا الامر يخص 『 '..Controller_Num(5)..' 』* ',"md",true)  
+return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص 『 '..Controller_Num(5)..' 』* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = ''..Redis:get(TheRhp..'Rhp:Channel:Join:Name')..'', url = 't.me/'..Redis:get(TheRhp..'Rhp:Channel:Join')}, },}}
@@ -4416,126 +4418,6 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {{{text = 'مسح المكتومين', data = msg.sender.user_id..'/SilentGroupGroup'},},}}
 return LuaTele.sendText(msg_chat_id, msg_id, ListMembers, 'md', false, false, false, false, reply_markup)
-end
-if text and text:match("^(.*)$") then
-if Redis:get(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "true" then
- LuaTele.sendText(msg_chat_id,msg_id, '\nارسل لي الكلمه الان ')
-Redis:set(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id, "true1")
-Redis:set(TheRhp.."Rhp11:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id, text)
-Redis:sadd(TheRhp.."Rhp11:List:Rd:Sudo", text)
-return false end
-end
-if text and text:match("^(.*)$") then
-if Redis:get(TheRhp.."Rhp11:Set:On"..msg.sender.user_id..":"..msg.chat_id) == "true" then
- LuaTele.sendText(msg_chat_id,msg_id,"تم حذف الرد من ردود المتعدده")
-Redis:del(TheRhp..'Rhp11:Add:Rd:Sudo:Text'..text)
-Redis:del(TheRhp..'Rhp11:Add:Rd:Sudo:Text1'..text)
-Redis:del(TheRhp..'Rhp11:Add:Rd:Sudo:Text2'..text)
-Redis:del(TheRhp.."Rhp11:Set:On"..msg.sender.user_id..":"..msg.chat_id)
-Redis:srem(TheRhp.."Rhp11:List:Rd:Sudo", text)
-return false
-end
-end
-if text == ("مسح الردود المتعدده عام") then
-if not msg.ControllerBot then 
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
-end
-local list = Redis:smembers(TheRhp.."Rhp11:List:Rd:Sudo")
-for k,v in pairs(list) do  
-Redis:del(TheRhp.."Rhp11:Add:Rd:Sudo:Text"..v) 
-Redis:del(TheRhp.."Rhp11:Add:Rd:Sudo:Text1"..v) 
-Redis:del(TheRhp.."Rhp11:Add:Rd:Sudo:Text2"..v)   
-Redis:del(TheRhp.."Rhp11:List:Rd:Sudo")
-end
- LuaTele.sendText(msg_chat_id,msg_id,"تم حذف ردود المتعدده")
-end
-if text == ("الردود المتعدده عام") then
-if not msg.ControllerBot then 
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
-end
-local list = Redis:smembers(TheRhp.."Rhp11:List:Rd:Sudo")
-text = "\nقائمة ردود المتعدده \n━━━━━━━━\n"
-for k,v in pairs(list) do
-db = "رساله "
-text = text..""..k.." => {"..v.."} => {"..db.."}\n"
-end
-if #list == 0 then
-text = "لا توجد ردود متعدده"
-end
- LuaTele.sendText(msg_chat_id,msg_id,"["..text.."]")
-end
-if text == "اضف رد متعدد عام" then
-if not msg.ControllerBot then 
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
-end
-Redis:set(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,true)
-return  LuaTele.sendText(msg_chat_id,msg_id,"ارسل الرد الذي اريد اضافته")
-end
-if text == "حذف رد متعدد عام" then
-if not msg.ControllerBot then 
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
-end
-Redis:set(TheRhp.."Rhp11:Set:On"..msg.sender.user_id..":"..msg.chat_id,true)
-return  LuaTele.sendText(msg_chat_id,msg_id,"ارسل الان الكلمه لحذفها ")
-end
-if text then  
-local test = Redis:get(TheRhp.."Rhp11:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id)
-if Redis:get(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "true1" then
-Redis:set(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,'rd1')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-Redis:set(TheRhp.."Rhp11:Add:Rd:Sudo:Text"..test, text)  
-end  
- LuaTele.sendText(msg_chat_id,msg_id,"تم حفظ الرد الاول ارسل الرد الثاني")
-return false  
-end  
-end
-if text then  
-local test = Redis:get(TheRhp.."Rhp11:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id)
-if Redis:get(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "rd1" then
-Redis:set(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,'rd2')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-Redis:set(TheRhp.."Rhp11:Add:Rd:Sudo:Text1"..test, text)  
-end  
- LuaTele.sendText(msg_chat_id,msg_id,"تم حفظ الرد الثاني ارسل الرد الثالث")
-return false  
-end  
-end
-if text then  
-local test = Redis:get(TheRhp.."Rhp11:Text:Sudo:Bot"..msg.sender.user_id..":"..msg.chat_id)
-if Redis:get(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id) == "rd2" then
-Redis:set(TheRhp.."Rhp11:Set:Rd"..msg.sender.user_id..":"..msg.chat_id,'rd3')
-if text then   
-text = text:gsub('"',"") 
-text = text:gsub('"',"") 
-text = text:gsub("`","") 
-text = text:gsub("*","") 
-Redis:set(TheRhp.."Rhp11:Add:Rd:Sudo:Text2"..test, text)  
-end  
- LuaTele.sendText(msg_chat_id,msg_id,"تم حفظ الرد")
-return false  
-end  
-end
-if text then
-local Text = Redis:get(TheRhp.."Rhp11:Add:Rd:Sudo:Text"..text)   
-local Text1 = Redis:get(TheRhp.."Rhp11:Add:Rd:Sudo:Text1"..text)   
-local Text2 = Redis:get(TheRhp.."Rhp11:Add:Rd:Sudo:Text2"..text)   
-if Text or Text1 or Text2 then 
-local texting = {
-Text,
-Text1,
-Text2
-}
-Textes = math.random(#texting)
- LuaTele.sendText(msg_chat_id,msg_id,texting[Textes])
-end
 end
  
 if msg.content.video_note or msg.content.document or msg.content.audio or msg.content.video or msg.content.voice_note or msg.content.sticker or msg.content.animation or msg.content.photo then      
@@ -5863,7 +5745,7 @@ local TestText = "  ❲ Owner Groups ❳\n— — — — — — — — —\n�
 keyboardd = {} 
 keyboardd.inline_keyboard = {
 {
-{text = '❲ ukkkp ❳', url = "https://t.me/ukkkp"}
+{text = '', url = "https://t.me/SSSFF0"}
 },
 }
 local msg_id = msg.id/2097152/0.5 
@@ -9549,7 +9431,7 @@ Redis:set(TheRhp.."Rhp:Set:Manager:rd"..msg.sender.user_id..":"..msg_chat_id,"tr
 return LuaTele.sendText(msg_chat_id,msg_id,"⇜ تمام , ارسل الكلمه الان لحذفها ","md",true)  
 end
 if text == ("مسح الردود العامه") then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -9572,7 +9454,7 @@ end
 return LuaTele.sendText(msg_chat_id,msg_id,"⇜ تم حذف الردود العامه ","md",true)  
 end
 if text == ("الردود العامه") then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -9609,7 +9491,7 @@ end
 return LuaTele.sendText(msg_chat_id,msg_id,"["..text.."]","md",true)  
 end
 if text == "اضف رد عام" then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -9620,7 +9502,7 @@ Redis:set(TheRhp.."Rhp:Set:Rd"..msg.sender.user_id..":"..msg_chat_id,true)
 return LuaTele.sendText(msg_chat_id,msg_id,"⇜ تمام , ارسل الكلمه الان لاضافتها ","md",true)  
 end
 if text == "حذف رد عام" or text == "مسح رد عام" then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -9980,7 +9862,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 
 {
-{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/kkznk"},
+{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/SSSFF0"},
 },
 {
 {text = '𝐅𝐀𝐖𝐀𝐙', url = "https://t.me/ukkkp"}
@@ -10010,7 +9892,7 @@ data = {
 {text = 'اوامر القفل', data = msg.sender.user_id..'/NoNextSeting'}, {text = 'اوامر التعطيل', data = msg.sender.user_id..'/listallAddorrem'}, 
 },
 {
-{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/kkznk"},
+{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/SSSFF0"},
 },
 }
 }
@@ -10035,7 +9917,7 @@ end
 print('Chat Id : '..msg_chat_id)
 print('User Id : '..msg_user_send_id)
 LuaTele.sendText(msg_chat_id,msg_id, "⇜ تم تحديث الملفات ","md",true)
-dofile('rhp.lua')  
+dofile('Rhp.lua')  
 end
 if text == "تغير اسم البوت" then 
 if not msg.ControllerBot then 
@@ -10172,15 +10054,15 @@ if Redis:get(TheRhp.."Rhp:Status:Games"..msg.chat_id) then
 local texting = {"اخر افلام شاهدتها", 
 "اخر افلام شاهدتها", 
 "ما هي وظفتك الحياه", 
-"اعز اصدقائك ?", 
-"اخر اغنية سمعتها ?", 
+"اعز اصدقائك ؟", 
+"اخر اغنية سمعتها ؟", 
 "تكلم عن نفسك", 
-"ليه انت مش سالك", 
+"تتوقع انك بتكون انسان ناجح؟", 
 "اخر كتاب قرآته", 
-"روايتك المفضله ?", 
+"روايتك المفضله ؟", 
 "اخر اكله اكلتها", 
 "اخر كتاب قرآته", 
-"ليش حسين ذكي؟ ", 
+"هل تشوف نفسك ناجح ؟", 
 "افضل يوم ف حياتك", 
 "ليه مضيفتش كل جهاتك", 
 "حكمتك ف الحياه", 
@@ -10349,9 +10231,7 @@ local texting = {"اخر افلام شاهدتها",
   "لو يجي عيد ميلادك تتوقع يجيك هدية؟ ",
   "اجمل هدية جاتك وش هو؟ ",
   "الصداقة ولا الحب؟ ",
-"الصداقة ولا الحب؟ ",
   "الغيرة الزائدة شك؟ ولا فرط الحب؟ ",
-    "هل انت دي تويت باعت باندا؟ ",
   "قد حبيت شخصين مع بعض؟ وانقفطت؟ ",
   "وش أخر شي ضيعته؟ ",
   "قد ضيعت شي ودورته ولقيته بيدك؟ ",
@@ -10479,7 +10359,7 @@ local texting = {"اخر افلام شاهدتها",
   "شيء مهما حطيت فيه فلوس بتكون مبسوط ؟ ",
   "مشاكلك بسبب ؟ ",
   "نسبه الندم عندك للي وثقت فيهم ؟ ",
-  "اول حرف من اسم شخص تقوله? بطل تفكر فيني ابي انام؟ ",
+  "هل تشوف بوت شهد ناجح ولا خرطي ؟ ",
   "اكثر شيء تحس انه مات ف مجتمعنا؟ ",
   "لو صار سوء فهم بينك وبين شخص هل تحب توضحه ولا تخليه كذا  لان مالك خلق توضح ؟ ",
   "كم عددكم بالبيت؟ ",
@@ -11175,59 +11055,6 @@ else
 return LuaTele.sendText(msg_chat_id,msg_id, "⇜ عدد الجواهر التي ربحتها *← "..Num.." *","md",true)  
 end
 end
-
-if text == 'ترتيب الاوامر' then
-if not msg.Managers then
-return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(6)..' }* ',"md",true)  
-end
-if ChannelJoin(msg) == false then
-local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = 'اضغط للاشتراك', url = 't.me/'..Redis:get(TheRhp..'Rhp:Channel:Join')}, },}}
-return LuaTele.sendText(msg.chat_id,msg.id,'*\n⇜ عليك الاشتراك في قناة البوت لاستخدام الاوامر*',"md",false, false, false, false, reply_markup)
-end
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'تعط','تعطيل الايدي بالصوره')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'تفع','تفعيل الايدي بالصوره')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'ا','ايدي')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'م','رفع مميز')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'اد', 'رفع ادمن')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'مد','رفع مدير')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'من', 'رفع منشئ')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'اس', 'رفع منشئ اساسي')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'مط','رفع مطور')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'تك','تنزيل الكل')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'ر','الرابط')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'رر','ردود المدير')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'،،','مسح المكتومين')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'رد','اضف رد')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'سح','مسح سحكاتي')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'غ','غنيلي')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'رس','رسائلي')
-Redis:set(TheRhp.."Rhp:Get:Reides:Commands:Group"..msg_chat_id..":"..'ثانوي','رفع مطور ثانوي')
-
-return LuaTele.sendText(msg_chat_id,msg_id,[[*
-⇜ تم ترتيب الاوامر بالشكل التالي ~
-⇜  ايدي - ا .
-⇜  رفع مميز - م .
-⇜ رفع ادمن - اد .
-⇜  رفع مدير - مد . 
-⇜  رفع منشى - من . 
-⇜  رفع منشئ الاساسي - اس  .
-⇜  رفع مطور - مط .
-⇜ رفع مطور ثانوي - ثانوي .
-⇜  تنزيل الكل - تك .
-⇜  تعطيل الايدي بالصوره - تعط .
-⇜  تفعيل الايدي بالصوره - تفع .
-⇜  الرابط - ر .
-⇜  ردود المدير - رر .
-⇜  مسح المكتومين - ،، .
-⇜  اضف رد - رد .
-⇜  مسح سحكاتي - سح .
-⇜  مسح رسائلي - رس .
-⇜  غنيلي - غ .
-*]],"md")
-end
-
-end -- GroupBot
-if chat_type(msg.chat_id) == "UserBot" then 
 if text == 'تحديث الملفات' or text == 'تحديث' then
 if not msg.ControllerBot then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
@@ -11243,7 +11070,7 @@ dofile('Rhp.lua')
 end
 if text == '/start' then
 Redis:sadd(TheRhp..'Rhp:Num:User:Pv',msg.sender.user_id)  
-if not msg.ControllerBot then
+if not msg.DevelopersQ then
 if not Redis:get(TheRhp.."Rhp:Start:Bot") then
 local CmdStart = '*\n⇜ أهلآ بك في بوت '..(Redis:get(TheRhp.."Rhp:Name:Bot") or "شهد")..
 '\n⇜ اختصاص البوت حماية المجموعات'..
@@ -11256,7 +11083,7 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = 'تحديثات شهد', url = 't.me/ukkkp'},
+{text = 'تحديثات شهد', url = 't.me/SSSFF0'},
 },
 {
 {text = 'ضيفني لمجموعتك', url = 't.me/'..UserBot..'?startgroup=new'}, 
@@ -11269,7 +11096,7 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = 'تحديثات شهد', url = 't.me/ukkkp'},
+{text = 'تحديثات شهد', url = 't.me/SSSFF0'},
 },
 {
 {text = 'ضيفني لمجموعتك', url = 't.me/'..UserBot..'?startgroup=new'}, 
@@ -11498,7 +11325,7 @@ Redis:del(TheRhp..'Rhp:Texting:DevTheRhp')
 return LuaTele.sendText(msg_chat_id,msg_id,'⇜ تم حذف كليشه المطور')
 end
 if text == 'اضف رد عام' then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -11509,7 +11336,7 @@ Redis:set(TheRhp.."Rhp:Set:Rd"..msg.sender.user_id..":"..msg_chat_id,true)
 return LuaTele.sendText(msg_chat_id,msg_id,"⇜ حلو , ارسل الكلمه لاضافاتها ","md",true)  
 end
 if text == 'حذف رد عام' then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -11591,7 +11418,7 @@ return false
 end
 
 if text == ("الردود العامه") then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -11628,7 +11455,7 @@ end
 return LuaTele.sendText(msg_chat_id,msg_id,"["..text.."]","md",true)  
 end
 if text == ("مسح الردود العامه") then 
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -11651,7 +11478,7 @@ end
 return LuaTele.sendText(msg_chat_id,msg_id,"⇜ تم حذف ردود المطور","md",true)  
 end
 if text == 'مسح المطورين' then
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -11767,7 +11594,7 @@ data = {{{text = '- مسح المحظورين عام', data = msg.sender.user_id
 return LuaTele.sendText(msg_chat_id, msg_id, ListMembers, 'md', false, false, false, false, reply_markup)
 end
 if text == 'المطورين' then
-if not msg.ControllerBot then 
+if not msg.DevelopersQ then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
 end
 if ChannelJoin(msg) == false then
@@ -12518,7 +12345,7 @@ data = {
 {text = 'اوامر القفل', data = IdUser..'/NoNextSeting'}, {text = 'اوامر التعطيل', data = IdUser..'/listallAddorrem'}, 
 },
 {
-{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/kkznk"},
+{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/SSSFF0"},
 },
 }
 }
