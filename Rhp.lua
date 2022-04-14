@@ -2896,15 +2896,11 @@ end
 else
 if photo.total_count > 0 then
 return LuaTele.sendPhoto(msg.chat_id, msg.id, photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id,
-'\n'..Description..
-'\n🎫 ↧مـعرفك ↞ '..UserInfousername..
-'\n🎟 ↧ايديــك ↞ '..UserId..
-'\n🔫 ↧رتبتـــك ↞ '..RinkBot..
-'\n🧨 ↧تفاعـلك ↞ '..TotalMsgT..
-'\n💬 ↧رسائلك ↞ '..TotalMsg..
-'\n💡 ↧تكليجاتك ↞ '..TotalEdit..
-'\n💎 ↧مجوهراتك ↞ '..NumberGames..
-'\n*'..getbio(UserId)..
+'\n✾ 𝐔𝐒𝐄 ⤷ '..UserInfousername..
+'\n✾ 𝐌𝐒𝐆 ⤷ '..TotalMsg..
+'\n✾ 𝐒𝐓𝐀 ⤷ '..RinkBot..
+'\n✾ 𝐈𝐃 ⤷ '..UserId..
+'\n✾ 𝐁𝐈𝐎 ⤷ *'..getbio(UserId)..
 '*', "md")
 else
 return LuaTele.sendText(msg_chat_id,msg_id,
