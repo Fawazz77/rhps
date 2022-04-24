@@ -1,12 +1,12 @@
-# <p align="center" style="color:#cb3349" > [سورس شهد](https://telegram.me/RMMMC) 
+# <p align="center" style="color:#cb3349" > [سورس كاي](https://telegram.me/RMMMC) 
 
-<p align="center" style="color: #14635c;" > سورس شهد الاقوى والاحدث لحمايه المجموعات في التلكرام 
+<p align="center" style="color: #14635c;" > سورس كاي الاقوى والاحدث لحمايه المجموعات في التيليجرام 
 
 *** 
 
-# <p align="center" style="color: #14635c;" > [التنصيب بكود واحد](https://t.me/Rmmmc/4121) 
+# <p align="center" style="color: #14635c;" > [التنصيب بكود واحد](https://t.me/zFFF8) 
 ```sh 
-git clone https://github.com/fawazz77/Rhps ;cd Rhps;bash Run
+git clone https://github.com/Faisal12a/FDFGERB ;cd FDFGERB;bash Run
 ``` 
 ``` 
 » فقط أضغط على الكود ☝️ وقم بنسخه 
@@ -15,7 +15,7 @@ git clone https://github.com/fawazz77/Rhps ;cd Rhps;bash Run
 » تدخل مـعلومـآتگ مـن توگن ومـعرفگ 
 » وسـوف يعمـل آلبوت بالسـگرين تلقآئيآ ... 
 ``` 
-# <p align="center" style="color: #14635c;" > [كود الرون](https://t.me/RMMMC/100) 
+# <p align="center" style="color: #14635c;" > [كود الرون](https://t.me/Zfff8) 
 ```sh 
 ./UserBot/run 
 
@@ -23,11 +23,11 @@ Example
 
 ./@KFYBot/run 
 ``` 
-# <p align="center" style="color: #14635c;" > [لتغيير المطور الاساسي ](https://t.me/RMMMC/100) 
+# <p align="center" style="color: #14635c;" > [لتغيير المطور الاساسي ](https://t.me/ZFff8) 
 ```sh 
-ارسل للبوت : نقل ملكيه البوت 
+ارسل للبوت : تغيير م
 ``` 
 
-[الاصدار الجديد ليس مجاني غير متوفر](https://t.me/ukkkp) 
+[الاصدار الجديد ليس مجاني غير متوفر](https://t.me/ccc3cc) 
 
-[لشراء احدث اصدار مع جميع المميزات راسلني](https://t.me/ukkkp) 
+[لشراء احدث اصدار مع جميع المميزات راسلني](https://t.me/X_J_5) 
