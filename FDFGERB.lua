@@ -271,15 +271,15 @@ data = {
 LuaTele.editMessageText(ChatId,MsgId,"• صلاحيات الادمن • ", 'md', false, false, reply_markupp)
 end
 function oger(Message)
-year = math.floor(Message / 31536000)
-byear = Message % 31536000 
-month = math.floor(byear / 2592000)
-bmonth = byear % 2592000 
-day = math.floor(bmonth / 86400)
-bday = bmonth % 86400 
-hours = math.floor( bday / 3600)
-bhours = bday % 3600 
-minx = math.floor(bhours / 60)
+year = math.floor(Message / 63072000)
+byear = Message % 63072000 
+month = math.floor(byear / 5184000)
+bmonth = byear % 5184000 
+day = math.floor(bmonth / 172800)
+bday = bmonth % 172800 
+hours = math.floor( bday / 7200)
+bhours = bday % 7200 
+minx = math.floor(bhours / 180)
 sec = math.floor(bhours % 3600) % 60
 return string.format("%02d:%02d", minx, sec)
 end
@@ -10317,7 +10317,6 @@ Redis:del(FDFGERB.."nnoooo"..v)
 Redis:del(FDFGERB.."nnooo"..v)
 Redis:del(FDFGERB.."nnoo"..v)
 Redis:del(FDFGERB.."polic"..v)
-Redis:del(FDFGERB.."attacks"..v)
 Redis:del(FDFGERB.."ashmvm"..v)
 Redis:del(FDFGERB.."hrame"..v)
 Redis:del(FDFGERB.."test:mmtlkat6"..v)
@@ -10438,17 +10437,17 @@ LuaTele.sendText(msg.chat_id,msg.id, "⇜ ماعندك حساب بنكي\n⇜ ا
 end
 end
 
-if text == 'استثمار' then
+if text == 'متاجره' then
 if Redis:get(FDFGERB.."nnoooo" .. msg.sender.user_id) then  
 local check_time = Redis:ttl(FDFGERB.."nnoooo" .. msg.sender.user_id)
 rr = oger(check_time)
-return LuaTele.sendText(msg.chat_id, msg.id,"⇜ مايمديك تستثمر الحين\n⇜ تعال بعد "..rr.." دقيقة") 
+return LuaTele.sendText(msg.chat_id, msg.id,"⇜ مايمديك تتاجر الحين\n⇜ تعال بعد "..rr.." دقيقة") 
 end
-LuaTele.sendText(msg.chat_id,msg.id, "استعمل الامر كذا :\n\n`استثمار` المبلغ","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "استعمل الامر كذا :\n\n`متاجره` المبلغ","md",true)
 end
 
-if text and text:match('^استثمار (.*)$') then
-local UserName = text:match('^استثمار (.*)$')
+if text and text:match('^متاجره (.*)$') then
+local UserName = text:match('^متاجره (.*)$')
 local coniss = tostring(UserName)
 local coniss = coniss:gsub('٠','0')
 local coniss = coniss:gsub('١','1')
@@ -10465,7 +10464,7 @@ if Redis:sismember(FDFGERB.."noooybgy",msg.sender.user_id) then
 if Redis:get(FDFGERB.."nnoooo" .. msg.sender.user_id) then  
 local check_time = Redis:ttl(FDFGERB.."nnoooo" .. msg.sender.user_id)
 rr = oger(check_time)
-return LuaTele.sendText(msg.chat_id, msg.id,"⇜ مايمديك تستثمر الحين\n⇜ تعال بعد "..rr.." دقيقة") 
+return LuaTele.sendText(msg.chat_id, msg.id,"⇜ مايمديك تتاجر الحين\n⇜ تعال بعد "..rr.." دقيقة") 
 end
 ballancee = Redis:get(FDFGERB.."nool:flotysb"..msg.sender.user_id) or 0
 if tonumber(coniss) < 199 then
@@ -10475,19 +10474,19 @@ if tonumber(ballancee) < tonumber(coniss) then
 return LuaTele.sendText(msg.chat_id,msg.id, "⇜ فلوسك ماتكفي \n༄","md",true)
 end
 if Redis:get(FDFGERB.."xxxr" .. msg.sender.user_id) then
-ballanceekk = math.floor(coniss / 100 * 10)
+ballanceekk = math.floor(coniss / 5 * 1)
 ballanceekkk = math.floor(ballancee + ballanceekk)
 Redis:incrby(FDFGERB.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
 Redis:sadd(FDFGERB.."ttpppi",msg.sender.user_id)
 Redis:setex(FDFGERB.."nnoooo" .. msg.sender.user_id,1200, true)
-return LuaTele.sendText(msg.chat_id,msg.id, "⇜ استثمار ناجح 2x\n⇜ نسبة الربح ↢ 10%\n⇜ مبلغ الربح ↢ ⦗ "..ballanceekk.." دينار 💸 ⦘\n⇜ فلوسك صارت ↢ ⦗ "..ballanceekkk.." دينار 💸 ⦘\n༄","md",true)
+return LuaTele.sendText(msg.chat_id,msg.id, "⇜ مُتاجره ناجحه 2x\n⇜ نسبة الربح ↢ 10%\n⇜ مبلغ الربح ↢ ⦗ "..ballanceekk.." دينار 💸 ⦘\n⇜ فلوسك صارت ↢ ⦗ "..ballanceekkk.." دينار 💸 ⦘\n༄","md",true)
 end
-local hadddd = math.random(0,25);
-ballanceekk = math.floor(coniss / 100 * hadddd)
+local hadddd = math.random(0,9);
+ballanceekk = math.floor(coniss / 5 * hadddd)
 ballanceekkk = math.floor(ballancee + ballanceekk)
 Redis:incrby(FDFGERB.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekk))
 Redis:setex(FDFGERB.."nnoooo" .. msg.sender.user_id,1200, true)
-LuaTele.sendText(msg.chat_id,msg.id, "⇜ استثمار ناجح \n⇜ نسبة الربح ↢ "..hadddd.."%\n⇜ مبلغ الربح ↢ ⦗ "..ballanceekk.." دينار 💸 ⦘\n⇜ فلوسك صارت ↢ ⦗ "..ballanceekkk.." دينار 💸 ⦘\n༄","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "⇜ مُتاجره ناجحه \n⇜ نسبة الربح ↢ "..hadddd.."%\n⇜ مبلغ الربح ↢ ⦗ "..ballanceekk.." دينار 💸 ⦘\n⇜ فلوسك صارت ↢ ⦗ "..ballanceekkk.." دينار 💸 ⦘\n༄","md",true)
 else
 LuaTele.sendText(msg.chat_id,msg.id, "⇜ ماعندك حساب بنكي\n⇜ اكتب ( `انشاء حساب بنكي` )","md",true)
 end
@@ -10761,107 +10760,6 @@ gt = string.upper(id:gsub('-100',''))
 gtr = math.floor(msg.id/2097152/0.5)
 telink = "http://t.me/c/"..gt.."/"..gtr..""
 Text = "⇜ الحق الحق على حلالك \n⇜ الشخص ذا : "..newss.."\n⇜ زرفك "..hrame.." دينار 💸 \n⇜ التاريخ : "..os.date("%Y/%m/%d").."\n⇜ الساعة : "..os.date("%I:%M%p").." \n༄"
-keyboard = {}  
-keyboard.inline_keyboard = {
-{{text = NameGroup, url=telink}}, 
-} 
-local msg_id = msg.id/2097152/0.5 
-https.request("https://api.telegram.org/bot"..Token..'/sendmessage?chat_id=' .. Remsg.sender.user_id .. '&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-else
-LuaTele.sendText(msg.chat_id,msg.id, "⇜ ماعنده حساب بنكي ","md",true)
-end
-end
-
-if text == 'هجوم' and tonumber(msg.reply_to_message_id) == 0 then
-if Redis:get(FDFGERB.."attacks" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(FDFGERB.."attacks" .. msg.sender.user_id)
-rr = oger(check_time)
-return LuaTele.sendText(msg.chat_id, msg.id,"‎⇜ مسكتك الشرطه 🚔\n⇜ انت بالسجن حاليًا\n⇜ راح نطلعك بعد "..rr.." دقيقة") 
-end 
-LuaTele.sendText(msg.chat_id,msg.id, "استعمل الامر كذا :\n\n`هجوم` بالرد","md",true)
-end
-
-if text and text:match('^هجوم (.*)$') then
-local UserName = text:match('^هجوم (.*)$')
-local coniss = tostring(UserName)
-local coniss = coniss:gsub('٠','0')
-local coniss = coniss:gsub('١','1')
-local coniss = coniss:gsub('٢','2')
-local coniss = coniss:gsub('٣','3')
-local coniss = coniss:gsub('٤','4')
-local coniss = coniss:gsub('٥','5')
-local coniss = coniss:gsub('٦','6')
-local coniss = coniss:gsub('٧','7')
-local coniss = coniss:gsub('٨','8')
-local coniss = coniss:gsub('٩','9')
-local coniss = tonumber(coniss) tonumber(msg.reply_to_message_id) ~= 0 then
-local Remsg = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
-local UserInfo = LuaTele.getUser(Remsg.sender.user_id)
-if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
-LuaTele.sendText(msg.chat_id,msg.id,"\n⇜ يا غبي ذا ببوت","md",true)  
-return false
-end
-if Remsg.sender.user_id == msg.sender.user_id then
-LuaTele.sendText(msg.chat_id,msg.id,"\n⇜ انت غبي تبي تهاجم نفسك؟","md",true)  
-return false
-end
-if Redis:get(FDFGERB.."attacks" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(FDFGERB.."attacks" .. msg.sender.user_id)
-rr = oger(check_time)
-return LuaTele.sendText(msg.chat_id, msg.id,"⇜ مسكتك الشرطه 🚔\n⇜ انت بالسجن حاليًا\n⇜ راح نطلعك بعد "..rr.." دقيقة") 
-end 
-if Redis:get(FDFGERB.."hrame" .. Remsg.sender.user_id) then  
-local check_time = Redis:ttl(FDFGERB.."hrame" .. Remsg.sender.user_id)
-rr = oger(check_time)
-return LuaTele.sendText(msg.chat_id, msg.id,"⇜ ذا توه هاجموه الناس\n⇜ يمديك تهاجمه بعد "..rr.." دقيقة") 
-end 
-if Redis:sismember(FDFGERB.."noooybgy",Remsg.sender.user_id) then
-ballanceed = Redis:get(FDFGERB.."nool:flotysb"..Remsg.sender.user_id) or 0
-if tonumber(ballanceed) < 200  then
-return LuaTele.sendText(msg.chat_id,msg.id, "⇜ مايمديك تهاجم فلوسه اقل من 200 دينار 💸","md",true)
-end
-local hrame = math.random(2000);
-local ballanceed = Redis:get(FDFGERB.."nool:flotysb"..Remsg.sender.user_id) or 0
-Redis:incrby(FDFGERB.."nool:flotysb"..msg.sender.user_id , hrame)
-Redis:decrby(FDFGERB.."nool:flotysb"..Remsg.sender.user_id , hrame)
-Redis:sadd(FDFGERB.."ttpppi",msg.sender.user_id)
-Redis:setex(FDFGERB.."hrame" .. Remsg.sender.user_id,900, true)
-Redis:incrby(FDFGERB.."zrffdcf"..msg.sender.user_id,hrame)
-Redis:sadd(FDFGERB.."zrfffidtf",msg.sender.user_id)
-Redis:setex(FDFGERB.."attacks" .. msg.sender.user_id,300, true)
-local ban = LuaTele.getUser(msg.sender.user_id)
-if ban.first_name then
-news = "["..ban.first_name.."](tg://user?id="..ban.id..")"
-else
-news = " لا يوجد "
-end
-if bann.first_name then
-newss = "["..bann.first_name.."](tg://user?id="..bann.id..")"
-else
-newss = " لا يوجد "
-end
-local modarba = {"1", "2", "3", "4",}
-local Descriptioontt = modarba[math.random(#modarba)]
-local modarbaa = math.random(1,90);
-if Descriptioontt == "1" or Descriptioontt == "3" then
-ballanceekku = math.floor(coniss / 100 * modarbaa)
-ballanceekkku = math.floor(ballancee - ballanceekku)
-Redis:decrby(FDFGERB.."nool:flotysb"..msg.sender.user_id , ballanceekku)
-Redis:setex(FDFGERB.."attacks" .. msg.sender.user_id,1200, true)
-LuaTele.sendText(msg.chat_id,msg.id, "⇜ هجوم فاشل "..news.."\n⇜ الفائز : "..newss.."\n⇜ الخاسر : "..news.."\n⇜ المبلغ الذي خسرته ↢ ⦗ "..ballanceekku.." دينار 💸 ⦘\n⇜ فلوسك صارت ↢ ⦗ "..ballanceekkku.." دينار 💸 ⦘\n༄","md",true)
-elseif Descriptioontt == "2" or Descriptioontt == "4" then
-ballanceekku = math.floor(coniss / 100 * modarbaa)
-ballanceekkku = math.floor(ballancee + ballanceekku)
-Redis:incrby(FDFGERB.."nool:flotysb"..msg.sender.user_id , math.floor(ballanceekku))
-Redis:setex(FDFGERB.."attacks" .. msg.sender.user_id,1200, true)
-LuaTele.sendText(msg.chat_id,msg.id, "⇜ لقد فزت في المعركة "..news.."\n⇜ ودمرت قلعه "..newss.." 🏰\n⇜ الفائز : "..news.."\n⇜ الخاسر : "..newss.."\n⇜ الجائزة : "..hrame.." دينار 💸","md",true)
-local Get_Chat = LuaTele.getChat(msg_chat_id)
-local NameGroup = Get_Chat.title
-local id = tostring(msg.chat_id)
-gt = string.upper(id:gsub('-100',''))
-gtr = math.floor(msg.id/2097152/0.5)
-telink = "http://t.me/c/"..gt.."/"..gtr..""
-Text = "⇜ تعال خذ حقك يورع! \n⇜ الشخص ذا : "..newss.."\n⇜ هاجمك ودمرك "..hrame.." دينار 💸 \n⇜ التاريخ : "..os.date("%Y/%m/%d").."\n⇜ الساعة : "..os.date("%I:%M%p").." \n༄"
 keyboard = {}  
 keyboard.inline_keyboard = {
 {{text = NameGroup, url=telink}}, 
