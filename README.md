@@ -6,7 +6,7 @@
 
 # <p align="center" style="color: #14635c;" > [التنصيب بكود واحد](https://t.me/ukkkp) 
 ```sh 
-git clone https://github.com/Fawazz77/FDFGERB ;cd FDFGERB;bash Run
+git clone https://github.com/Fawazz77/Rphs ;cd Rhps;bash Run
 ``` 
 ``` 
 » فقط أضغط على الكود ☝️ وقم بنسخه 
