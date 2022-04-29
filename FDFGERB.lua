@@ -10772,13 +10772,13 @@ LuaTele.sendText(msg.chat_id,msg.id, "⇜ ماعنده حساب بنكي ","md",
 end
 end
 
-if text == 'زرف' and tonumber(msg.reply_to_message_id) == 0 then
-if Redis:get(FDFGERB.."polic" .. msg.sender.user_id) then  
-local check_time = Redis:ttl(FDFGERB.."polic" .. msg.sender.user_id)
+if text == 'هجوم' and tonumber(msg.reply_to_message_id) == 0 then
+if Redis:get(FDFGERB.."attacks" .. msg.sender.user_id) then  
+local check_time = Redis:ttl(FDFGERB.."attacks" .. msg.sender.user_id)
 rr = oger(check_time)
-return LuaTele.sendText(msg.chat_id, msg.id,"⇜ يالظالم توك زارف \n⇜ تعال بعد "..rr.." دقيقة") 
+return LuaTele.sendText(msg.chat_id, msg.id,"‎⇜ مسكتك الشرطه 🚔\n⇜ انت بالسجن حاليًا\n⇜ راح نطلعك بعد "..rr.." دقيقة") 
 end 
-LuaTele.sendText(msg.chat_id,msg.id, "استعمل الامر كذا :\n\n`زرف` بالرد","md",true)
+LuaTele.sendText(msg.chat_id,msg.id, "استعمل الامر كذا :\n\n`هجوم` بالرد","md",true)
 end
 
 if text and text:match('^هجوم (.*)$') then
@@ -10794,8 +10794,7 @@ local coniss = coniss:gsub('٦','6')
 local coniss = coniss:gsub('٧','7')
 local coniss = coniss:gsub('٨','8')
 local coniss = coniss:gsub('٩','9')
-local coniss = tonumber(coniss)
-and tonumber(msg.reply_to_message_id) ~= 0 then
+local coniss = tonumber(coniss) tonumber(msg.reply_to_message_id) ~= 0 then
 local Remsg = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
 local UserInfo = LuaTele.getUser(Remsg.sender.user_id)
 if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
