@@ -10092,42 +10092,6 @@ local BotName = {
 }
 return LuaTele.sendText(msg_chat_id,msg_id,BotName[math.random(#BotName)],"md",true)   
 end
-if text == "احبك" then
-local iLoveYou = {
-‎"يلبيييييه",
-‎"اكثر",
-‎"يعمري",
-‎"اعشقك",
-‎"احلى من يحبني",
-‎"يحظيي والله",
-‎"اكثرر اكثرر",
-"يروحي",
-‎"اموت فيك"
-}
-return LuaTele.sendText(msg_chat_id,msg_id,iLoveYou[math.random(#iLoveYou)],"md",true)   
-end
-if text == "هاي" then
-local Hay = {
-‎"هلا فيك",
-‎"هاياتت",
-‎"اهلين يروحي",
-‎"هلا قلبي",
-‎"حييووو احلى من جانا",
-‎"اهلين"
-}
-return LuaTele.sendText(msg_chat_id,msg_id,Hay[math.random(#Hay)],"md",true)   
-end
-if text == "باي" then
-local Bay = {
-‎"ابركها من ساعه",
-‎"انقلع",
-‎"الحمدلله بيروح النشبه",
-‎"توها زانت السوالف",
-‎"على وين يابعد روحي",
-‎"يورع لاتروح"
-}
-return LuaTele.sendText(msg_chat_id,msg_id,Bay[math.random(#Bay)],"md",true)   
-end
 if text == 'تنظيف المشتركين' then
 if not msg.ControllerBot then 
 return LuaTele.sendText(msg_chat_id,msg_id,'\n*⇜ هاذا الامر يخص { '..Controller_Num(1)..' }* ',"md",true)  
