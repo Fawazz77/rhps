@@ -5861,7 +5861,7 @@ local TestText = "  ❲ Owner Groups ❳\n— — — — — — — — —\n�
 keyboardd = {} 
 keyboardd.inline_keyboard = {
 {
-{text = 'السورس', url = "https://t.me/SSSFF0"}
+{text = 'السورس', url = "https://t.me/ukkkp"}
 },
 }
 local msg_id = msg.id/2097152/0.5 
@@ -8565,7 +8565,7 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = 'السورس', url = 't.me/SSSFF0'}, 
+{text = 'السورس', url = 't.me/ukkkp'}, 
 },
 }
 }
@@ -9978,7 +9978,7 @@ keyboard = {}
 keyboard.inline_keyboard = {
 
 {
-{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/sssff0"},
+{text = '', url = "https://t.me/"},
 },
 {
 {text = '𝑫𝒆𝒗', url = "https://t.me/ukkkp"}
@@ -10008,7 +10008,7 @@ data = {
 {text = 'اوامر القفل', data = msg.sender.user_id..'/NoNextSeting'}, {text = 'اوامر التعطيل', data = msg.sender.user_id..'/listallAddorrem'}, 
 },
 {
-{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/SSSFF0"},
+{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/kkznk"},
 },
 }
 }
@@ -10018,8 +10018,7 @@ return LuaTele.sendText(msg_chat_id,msg_id, [[⇜ اهلين عيني بـ او�
 ✯ م2 ↢ اوامر الرفع والتنزيل
 ✯ م3 ↢ اوامر الوضع والخدمة
 ✯ م4 ↢ اوامر التسلية
-
-✧ - [Dev](T.me/ukkkp)
+━━━━━━━━━━━━
 ]],"md",false, false, false, false, reply_markup)
 end
 if text == 'تحديث' then
@@ -12552,7 +12551,7 @@ data = {
 {text = 'اوامر القفل', data = IdUser..'/NoNextSeting'}, {text = 'اوامر التعطيل', data = IdUser..'/listallAddorrem'}, 
 },
 {
-{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/sssff0"},
+{text = '𝑺𝒐𝒖𝒓𝒄𝒆', url = "https://t.me/kkznk"},
 },
 }
 }
@@ -12562,8 +12561,7 @@ local TextHelp = [[⇜ اهلين عيني بـ اوامر البوت
 ✯ م2 ↢ اوامر الرفع والتنزيل
 ✯ م3 ↢ اوامر الوضع والخدمة
 ✯ م4 ↢ اوامر التسلية
-
-✧ - [Dev](T.me/ukkkp)
+━━━━━━━━━━━━
 ]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
