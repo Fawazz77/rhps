@@ -22191,7 +22191,7 @@ end
 if text == '/start' then
 Redis:sadd(TheMero..'Mero:Num:User:Pv',msg.sender_id.user_id)  
 if not msg.ControllerBot then
-local reply_markup = Bot.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
+local reply_markup = bot.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
 {
 {text = 'قران',type = 'text'},
