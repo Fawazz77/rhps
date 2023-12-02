@@ -22188,26 +22188,11 @@ data = {
 return bot.sendText(msg_chat_id,msg_id,'⇜ اختار ماتريده من الازرار .', 'md', false, false, false, false, reply_markup)
 end
 -------------------------------------------------------------------------
-if text == '/start' then 
-Redis:set(TheMero.."keyboardmemb"..msg.sender_id.user_id,true)
-Redis:sadd(TheMero..'Mero:Num:User:Pv',msg.sender_id.user_id)
+if text == '/start' then
+Redis:sadd(TheMero..'Mero:Num:User:Pv',msg.sender_id.user_id)  
 if not msg.ControllerBot then
-if not Redis:get(TheMero.."Mero:Start:Bot") then
-local CmdStart = '\n⇜ أهلاً بك عزيزي انا بوت اسمي '..(Redis:get(TheMero.."Mero:Name:Bot") or "لويس")..
-'\n⇜ اختصاص البوت حماية المجموعات\n⇜ بعض من مميزاتي 🧚🏼‍♀️.\n{ العاب مثل كلمات والخ .. ، تيك ، ساوند ، يوتيوب ، والكثير من مميزات اكتشفوها بنفسكم من خلال الاوامر او تابع تحديثات البوت ↤ @Y88F8 .'..
-'\n• مطور البوت ↤ [@'..UserSudo..']'
-local reply_markupp = bot.replyMarkup{
-type = 'inline',
+local reply_markup = Bot.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
-{
-{text = 'اضفني لقروبك', url = 't.me/'..UserBot..'?startgroup=new'}, 
-},
-{
-{text = 'Louis', url = 't.me/Y88F8'}, 
-},
-}
-}
-local reply_markup = bot.replyMarkup{type = 'keyboard',resize = true,is_personal = true,data = { 
 {
 {text = 'قران',type = 'text'},
 },
@@ -22234,8 +22219,32 @@ local reply_markup = bot.replyMarkup{type = 'keyboard',resize = true,is_personal
 },
 }
 }
-return send(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markupp)
-return send(msg_chat_id,msg_id,'• اختر ما تريده من الكيبورد', 'md', false, false, false, false, reply_markup) 
+bot.sendText(msg_chat_id,msg_id,'⇜ اختار الي تبيه من الازرار  .', 'md', false, false, false, false, reply_markup)
+if not Redis:get(TheMero.."Mero:Start:Bot") then
+local CmdStart = '\n⇜ اهلين انا بوت اسمي '..(Redis:get(TheMero.."Mero:Name:Bot") or "نهار")..
+'\n⇜ اختصاصي ادارة المجموعات من السبام والتكرار..'..
+'\n⇜ انشاء نادي, يوتيوب,ساوند واشياء كثير '..
+'\n⇜ تبي تفعلني ؟ ارفعني اشراف وبتفعل تلقائي'..
+'\n⇜ المطور - [𝐅𝐀𝐖𝐀𝐙 🎸](t.me/ukkkp)'
+local reply_markup = bot.replyMarkup{
+type = 'inline',
+data = {
+{
+{text = 'ضيفني لـ مجموعتك 📸',url="https://t.me/"..UserBot.."?startgroup=new"}, 
+},
+}
+}
+return bot.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
+else
+local reply_markup = bot.replyMarkup{
+type = 'inline',
+data = {
+{
+{text = 'ضيفني لـ مجموعتك 📸',url="https://t.me/"..UserBot.."?startgroup=new"}, 
+},
+}
+}
+return bot.sendText(msg_chat_id,msg_id,Redis:get(TheMero.."Mero:Start:Bot"),"md",false, false, false, false, reply_markup)
 end
 else
 local reply_markup = bot.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
@@ -22275,7 +22284,7 @@ data = {
 },
 }
 }
-return bot.sendText(msg_chat_id,msg_id,'⇜ اهلا بك عزيزي المطور', 'md', false, false, false, false, reply_markup)
+return bot.sendText(msg_chat_id,msg_id,'⇜ ارحب مطوري\n⇜ انت المطور الاساسي هنا\n...\n⇜ تقدر تتحكم بكل الاوامر الموجودة بالكيبورد\n⇜ اضغط على الامر اللي تبيه بس', 'md', false, false, false, false, reply_markup)
 end
 end
 if text == "اوامر المطور" and msg.ControllerBot then
