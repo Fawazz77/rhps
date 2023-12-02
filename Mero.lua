@@ -1265,44 +1265,6 @@ end
 return JoinChannel
 end
 
-function edit(chat,rep,text,parse, dis, disn, reply_markup)
-shh = text
-if Redis:get(TheMero..'rmzsource') then
-shh = shh:gsub("⇜",Redis:get(TheMero..'rmzsource'))
-end
-local listm = Redis:smembers(TheMero..msg.chat_id.."Words:r")
-for k,v in pairs(listm) do
-i ,j  = string.find(shh, v)
-if j and i then
-local x = string.sub(shh, i,j)
-local neww = Redis:get(TheMero..msg.chat_id.."Word:Replace"..x)  
-shh = shh:gsub(x,neww)
-else
-shh = shh
-end
-end
-bot.editMessageText(chat,rep,shh, parse, dis, disn, reply_markup)
-end
-function send(chat,rep,text,parse,dis,clear,disn,back,markup)
-sh = text
-if Redis:get(TheMero..'rmzsource') then
-sh = sh:gsub("⇜",Redis:get(TheMero..'rmzsource'))
-end
-local gygy = msg.chat_id
-local listm = Redis:smembers(TheMero..gygy.."Words:r")
-for k,v in pairs(listm) do
-i ,j  = string.find(sh, v)
-if j and i then
-local x = string.sub(sh, i,j)
-local neww = Redis:get(TheMero..gygy.."Word:Replace"..x)  
-sh = sh:gsub(x,neww)
-else
-sh = sh
-end
-end
-bot.sendText(chat,rep,sh,parse,dis, clear, disn, back, markup)
-end
-
 function File_Bot_Run(msg,data)  
 local msg_chat_id = msg.chat_id
 local msg_reply_id = msg.reply_to_message_id
