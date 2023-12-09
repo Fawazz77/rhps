@@ -1,9 +1,12 @@
-
 #!/bin/bash
 cd $(cd $(dirname $0); pwd)
 echo -e '\e[1m\e[31m
-Spark source is being installed, 
-Please wait until the installation is complete
+    ______   __                    __          _    __   ___ 
+   / ____/  / /  ____ _   _____   / /_        | |  / /  |__ \
+  / /_     / /  / __ `/  / ___/  / __ \       | | / /   __/ /
+ / __/    / /  / /_/ /  (__  )  / / / /       | |/ /   / __/ 
+/_/      /_/   \__,_/  /____/  /_/ /_/        |___/   /____/ 
+=====================> W e l c o m e <======================
 \033[0m'
 echo -e '\033[0;33m
 If it is the first time to install the source, send the number » {1}
@@ -45,14 +48,11 @@ sudo luarocks install luasec
 sudo luarocks install luasocket
 cd ../..
 rm -rf tmp
-unzip tdlua.zip
 sudo lua5.3 Mero.lua
 ;;
 2)
 echo -e "\e[1m\e[32mThe bot is running now : جاري تشغيل البوت الان : \e[0m"
-echo-e "\e[1m\e[32m Dev : @ukkkp channel bots : @QQQxx "
 sleep 2
-unzip tdlua.zip
 sudo lua5.3 Mero.lua
 ;;
 esac
