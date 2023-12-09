@@ -1,18 +1,13 @@
 #!/bin/bash
 cd $(cd $(dirname $0); pwd)
 echo -e '\e[1m\e[31m
-    ______   __                    __          _    __   ___ 
-   / ____/  / /  ____ _   _____   / /_        | |  / /  |__ \
-  / /_     / /  / __ `/  / ___/  / __ \       | | / /   __/ /
- / __/    / /  / /_/ /  (__  )  / / / /       | |/ /   / __/ 
-/_/      /_/   \__,_/  /____/  /_/ /_/        |___/   /____/ 
-=====================> W e l c o m e <======================
+FDFGERB source is being installed, 
+Please wait until the installation is complete
 \033[0m'
 echo -e '\033[0;33m
-If it is the first time to install the source, send the number » {1}
-or اذا كانت اول مره تنصيب السورس ارسل رقم » {1}
-If you have already installed the source, send the number » {2}
-or اذا سبق ونصبت السورس ارسل رقم » {2}
+اذا اول مرا تنصب سورس اكتب - 1
+
+اذا منصب سورس من قبل ارسل - 2
 \033[0m'
 read Install
 case $Install in
@@ -51,7 +46,7 @@ rm -rf tmp
 sudo lua5.3 Mero.lua
 ;;
 2)
-echo -e "\e[1m\e[32mThe bot is running now : جاري تشغيل البوت الان : \e[0m"
+echo -e "\e[1m\e[32mجاري تشغيل البوت الان\e[0m"
 sleep 2
 sudo lua5.3 Mero.lua
 ;;
